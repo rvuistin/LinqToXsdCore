@@ -628,7 +628,7 @@ namespace Xml.Schema.Linq.CodeGen
                 clrTypeName = typeName;
             }
 
-            if (IsEnum)
+            if (IsEnum && !string.IsNullOrEmpty(clrTypeName))
             {
                 clrTypeName += Constants.EnumValidator;
             }
@@ -660,9 +660,9 @@ namespace Xml.Schema.Linq.CodeGen
                 }
 
                 refTypeName = clrTypeName;
-                if (typeNs != string.Empty /*&& typeNs != parentTypeClrNs*/)
+                if (typeNs != string.Empty && typeNs != parentTypeClrNs)
                 {
-                    //Keep the full type name to avoid conflicts when we have types with the same name in different namespaces.
+                    //Namespace of the property's type is different than the namespace of the enclosing CLR Type
                     clrTypeName = typeNs + "." + clrTypeName;
                 }
             }

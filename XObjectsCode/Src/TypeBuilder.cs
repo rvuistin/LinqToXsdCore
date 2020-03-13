@@ -365,7 +365,8 @@ namespace Xml.Schema.Linq.CodeGen
         {
             string typeName = typeInfo is EnumSimpleTypeInfo ? typeInfo.clrtypeName + Constants.EnumValidator : typeInfo.clrtypeName;
             var simpleTypeDecl = new CodeTypeDeclaration(typeName);
-            simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.NestedAssembly;
+            var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
+            simpleTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
 
             //Add private constructor so it cannot be instantiated
             var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
@@ -394,12 +395,9 @@ namespace Xml.Schema.Linq.CodeGen
             var enumTypeDecl = new CodeTypeDeclaration(typeName) { IsEnum = true };
             var typeVisibility = settings.NamespaceTypesVisibilityMap.ValueForKey(typeInfo.clrtypeNs).ToTypeAttribute();
             enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
-            if (typeInfo.InnerType is XmlSchemaSimpleType innerType && innerType.Content is XmlSchemaSimpleTypeRestriction content)
+            foreach (var facet in typeInfo.InnerType.GetEnumFacets())
             {
-                foreach (var valueName in content.Facets.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>())
-                {
-                    enumTypeDecl.Members.Add(new CodeMemberField(typeName, valueName));
-                }
+                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet));
             }
 
             ApplyAnnotations(enumTypeDecl, typeInfo);
@@ -503,6 +501,10 @@ namespace Xml.Schema.Linq.CodeGen
 
             CodeTypeReference returnType = CodeDomHelper.CreateDictionaryType(Constants.XNameType, Constants.SystemTypeName);
             CodeTypeReference wrapperReturnType = CodeDomHelper.CreateDictionaryType(Constants.SystemTypeName, Constants.SystemTypeName);
+
+            //Add private constructor so it cannot be instantiated
+            var privateConst = new CodeConstructor { Attributes = MemberAttributes.Private };
+            servicesTypeDecl.Members.Add(privateConst);
 
             //Create a dictionary of TypeName vs System.Type and the method to create it
             CodeMemberProperty typeDictProperty = null;
@@ -1158,11 +1160,9 @@ namespace Xml.Schema.Linq.CodeGen
             CodeStatementCollection wrapperDictionaryStatements)
         {
             base.AddTypeToTypeManager(elementDictionaryStatements, Constants.ElementDictionaryField);
-            string innerTypeFullName = null;
-            if (!innerTypeName.Contains(innerTypeNs))
-            {
-                innerTypeFullName = "global::" + innerTypeNs + "." + innerTypeName;
-            }
+            var innerTypeFullName = innerTypeName.Contains(innerTypeNs)
+                ? "global::" + innerTypeName
+                : "global::" + innerTypeNs + "." + innerTypeName;
 
             wrapperDictionaryStatements.Add(CodeDomHelper.CreateMethodCallFromField(Constants.WrapperDictionaryField,
                 "Add", CodeDomHelper.Typeof(clrTypeInfo.clrFullTypeName), CodeDomHelper.Typeof(innerTypeFullName)));
