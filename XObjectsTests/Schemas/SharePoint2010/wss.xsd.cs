@@ -13,6 +13,7 @@ namespace Microsoft.Schemas.SharePoint {
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Diagnostics;
     using System.Xml;
     using System.Xml.Schema;
@@ -175,14 +176,21 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class TrueFalseMixed {
+    public enum TrueFalseMixed {
+        
+        True,
+        
+        False,
+    }
+    
+    public sealed class TrueFalseMixedValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "True",
                         "False"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private TrueFalseMixed() {
+        private TrueFalseMixedValidator() {
         }
     }
     
@@ -820,7 +828,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+    /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
     /// </para>
     /// </summary>
     public partial class LogicalJoinDefinition : XTypedElement, IXMetaData {
@@ -868,7 +876,7 @@ namespace Microsoft.Schemas.SharePoint {
         private XTypedList<LogicalTestDefinition> ContainsField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<LogicalMultiTestDefinition> @InField;
+        private XTypedList<LogicalMultiTestDefinition> InField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -881,7 +889,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public LogicalJoinDefinition() {
@@ -895,7 +903,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Eq {
@@ -928,7 +936,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Geq {
@@ -961,7 +969,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Gt {
@@ -994,7 +1002,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Leq {
@@ -1027,7 +1035,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Lt {
@@ -1060,7 +1068,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Neq {
@@ -1093,7 +1101,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<ExtendedLogicalJoinDefinition> And {
@@ -1126,7 +1134,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<ExtendedLogicalJoinDefinition> Or {
@@ -1159,7 +1167,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<MembershipDefinition> Membership {
@@ -1192,7 +1200,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> IsNull {
@@ -1225,7 +1233,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> IsNotNull {
@@ -1258,7 +1266,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<UnlimitedLogicalTestDefinition> DateRangesOverlap {
@@ -1291,7 +1299,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> BeginsWith {
@@ -1324,7 +1332,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Contains {
@@ -1357,26 +1365,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | Membership | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | In)*)
         /// </para>
         /// </summary>
-        public virtual IList<LogicalMultiTestDefinition> @In {
+        public virtual IList<LogicalMultiTestDefinition> In {
             get {
-                if ((this.@InField == null)) {
-                    this.@InField = new XTypedList<LogicalMultiTestDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.InField == null)) {
+                    this.InField = new XTypedList<LogicalMultiTestDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@InField;
+                return this.InField;
             }
             set {
                 if ((value == null)) {
-                    this.@InField = null;
+                    this.InField = null;
                 }
                 else {
-                    if ((this.@InField == null)) {
-                        this.@InField = XTypedList<LogicalMultiTestDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.InField == null)) {
+                        this.InField = XTypedList<LogicalMultiTestDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<LogicalMultiTestDefinition>(this.@InField, value);
+                        XTypedServices.SetList<LogicalMultiTestDefinition>(this.InField, value);
                     }
                 }
             }
@@ -1519,7 +1527,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Explicit {
+        public virtual string Explicit {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Explicit", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -1624,13 +1632,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.ReferenceType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ReferenceType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ReferenceType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -1679,7 +1687,24 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ReferenceType {
+    public enum ReferenceType {
+        
+        AVG,
+        
+        COUNT,
+        
+        MAX,
+        
+        MIN,
+        
+        SUM,
+        
+        STDEV,
+        
+        VAR,
+    }
+    
+    public sealed class ReferenceTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -1691,7 +1716,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "STDEV",
                         "VAR"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ReferenceType() {
+        private ReferenceTypeValidator() {
         }
     }
     
@@ -2186,7 +2211,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+    /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
     /// </para>
     /// </summary>
     public partial class ExtendedLogicalJoinDefinition : XTypedElement, IXMetaData {
@@ -2234,7 +2259,7 @@ namespace Microsoft.Schemas.SharePoint {
         private XTypedList<MembershipDefinition> MembershipField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<LogicalMultiTestDefinition> @InField;
+        private XTypedList<LogicalMultiTestDefinition> InField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -2247,7 +2272,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public ExtendedLogicalJoinDefinition() {
@@ -2261,7 +2286,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Eq {
@@ -2294,7 +2319,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Geq {
@@ -2327,7 +2352,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Gt {
@@ -2360,7 +2385,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Leq {
@@ -2393,7 +2418,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Lt {
@@ -2426,7 +2451,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Neq {
@@ -2459,7 +2484,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<ExtendedLogicalJoinDefinition> And {
@@ -2492,7 +2517,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<ExtendedLogicalJoinDefinition> Or {
@@ -2525,7 +2550,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalNullDefinition> IsNull {
@@ -2558,7 +2583,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalNullDefinition> IsNotNull {
@@ -2591,7 +2616,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> DateRangesOverlap {
@@ -2624,7 +2649,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> BeginsWith {
@@ -2657,7 +2682,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<LogicalTestDefinition> Contains {
@@ -2690,7 +2715,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
         public virtual IList<MembershipDefinition> Membership {
@@ -2723,26 +2748,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | @In)*)
+        /// Regular expression: ((Eq | Geq | Gt | Leq | Lt | Neq | And | Or | IsNull | IsNotNull | DateRangesOverlap | BeginsWith | Contains | Membership | In)*)
         /// </para>
         /// </summary>
-        public virtual IList<LogicalMultiTestDefinition> @In {
+        public virtual IList<LogicalMultiTestDefinition> In {
             get {
-                if ((this.@InField == null)) {
-                    this.@InField = new XTypedList<LogicalMultiTestDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.InField == null)) {
+                    this.InField = new XTypedList<LogicalMultiTestDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@InField;
+                return this.InField;
             }
             set {
                 if ((value == null)) {
-                    this.@InField = null;
+                    this.InField = null;
                 }
                 else {
-                    if ((this.@InField == null)) {
-                        this.@InField = XTypedList<LogicalMultiTestDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.InField == null)) {
+                        this.InField = XTypedList<LogicalMultiTestDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("In", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<LogicalMultiTestDefinition>(this.@InField, value);
+                        XTypedServices.SetList<LogicalMultiTestDefinition>(this.InField, value);
                     }
                 }
             }
@@ -2986,7 +3011,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Override {
+        public virtual string Override {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Override", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -3546,7 +3571,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -4054,7 +4079,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class CamlViewRoot : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -4070,7 +4095,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public CamlViewRoot() {
@@ -4255,7 +4280,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -4428,7 +4453,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class HtmlContentDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -4444,7 +4469,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public HtmlContentDefinition() {
@@ -4569,13 +4594,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.ReferenceType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ReferenceType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ReferenceType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -4629,7 +4654,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Explicit {
+        public virtual string Explicit {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Explicit", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -4750,13 +4775,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string OnError {
+        public virtual Microsoft.Schemas.SharePoint.ErrorHandling OnError {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("OnError", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ErrorHandling)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ErrorHandling), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("OnError", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("OnError", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -4849,18 +4874,34 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ErrorHandling {
+    public enum ErrorHandling {
+        
+        Return,
+        
+        Continue,
+    }
+    
+    public sealed class ErrorHandlingValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Return",
                         "Continue"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ErrorHandling() {
+        private ErrorHandlingValidator() {
         }
     }
     
-    public sealed class UpdateMethod {
+    public enum UpdateMethod {
+        
+        Delete,
+        
+        New,
+        
+        Update,
+    }
+    
+    public sealed class UpdateMethodValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -4868,7 +4909,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "New",
                         "Update"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private UpdateMethod() {
+        private UpdateMethodValidator() {
         }
     }
     
@@ -4952,13 +4993,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Cmd {
+        public virtual Microsoft.Schemas.SharePoint.UpdateMethod Cmd {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Cmd", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.UpdateMethod)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.UpdateMethod), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Cmd", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Cmd", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -5044,13 +5085,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.RequestParameter Scope {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Scope", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RequestParameter)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RequestParameter), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -5120,19 +5161,24 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class RequestParameter {
+    public enum RequestParameter {
+        
+        Request,
+    }
+    
+    public sealed class RequestParameterValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Request"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private RequestParameter() {
+        private RequestParameterValidator() {
         }
     }
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class SetVarDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -5148,7 +5194,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public SetVarDefinition() {
@@ -5174,13 +5220,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.RequestParameter Scope {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Scope", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RequestParameter)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RequestParameter), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -5308,7 +5354,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class CamlViewElement : XTypedElement, IXMetaData {
@@ -5422,7 +5468,7 @@ namespace Microsoft.Schemas.SharePoint {
         private XTypedList<SetVarDefinition> SetVarField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<SwitchDefinition> @SwitchField;
+        private XTypedList<SwitchDefinition> SwitchField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<ThreadStampDefinition> ThreadStampField;
@@ -5461,7 +5507,7 @@ namespace Microsoft.Schemas.SharePoint {
         private XTypedList<CamlViewElement> MapToControlField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<ForEachElement> @ForEachField;
+        private XTypedList<ForEachElement> ForEachField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedList<CamlViewElement> ContentTypesField;
@@ -5480,7 +5526,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public CamlViewElement() {
@@ -5494,7 +5540,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<QueryColumnDefinition> Column {
@@ -5527,7 +5573,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<QueryColumnDefinition> Column2 {
@@ -5560,7 +5606,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CounterDefinition> Counter {
@@ -5593,7 +5639,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> CurrentRights {
@@ -5626,7 +5672,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<FieldViewReferenceDefinition> Field {
@@ -5659,7 +5705,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> FieldPrefix {
@@ -5692,7 +5738,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<FieldPropertyDefinition> FieldProperty {
@@ -5725,7 +5771,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> Fields {
@@ -5758,7 +5804,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<SwitchDefinition> FieldSwitch {
@@ -5791,7 +5837,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<FilterLinkDefinition> FilterLink {
@@ -5824,7 +5870,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<XTypedElement> GetFileExtension {
@@ -5857,7 +5903,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<GetVarDefinition> GetVar {
@@ -5890,7 +5936,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HtmlContentDefinition> HTML {
@@ -5923,7 +5969,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HttpHostDefinition> HttpHost {
@@ -5956,7 +6002,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HttpPathDefinition> HttpPath {
@@ -5989,7 +6035,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HttpVDirDefinition> HttpVDir {
@@ -6022,7 +6068,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> ID {
@@ -6055,7 +6101,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<IfEqualDefinition> IfEqual {
@@ -6088,7 +6134,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<IfNegDefinition> IfNeg {
@@ -6121,7 +6167,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<IfNewDefinition> IfNew {
@@ -6154,7 +6200,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<IfSubStringDefinition> IfSubString {
@@ -6187,7 +6233,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<XTypedElement> Length {
@@ -6220,7 +6266,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<LimitDefinition> Limit {
@@ -6253,7 +6299,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> List {
@@ -6286,7 +6332,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> ListUrl {
@@ -6319,7 +6365,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HttpPathDefinition> ListUrlDir {
@@ -6352,7 +6398,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<ListPropertyDefinition> ListProperty {
@@ -6385,7 +6431,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<LookupColumnDefinition> LookupColumn {
@@ -6418,7 +6464,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> MapToAll {
@@ -6451,7 +6497,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> MapToIcon {
@@ -6484,7 +6530,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HtmlRenderingElement> PageUrl {
@@ -6517,7 +6563,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<FieldPropertyDefinition> Property {
@@ -6550,7 +6596,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<ScriptQuoteDefinition> ScriptQuote {
@@ -6583,7 +6629,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<SelectOptionsDefinition> SelectionOptions {
@@ -6616,7 +6662,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<ServerPropertyDefinition> ServerProperty {
@@ -6649,7 +6695,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<SetVarDefinition> SetVar {
@@ -6682,26 +6728,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
-        public virtual IList<SwitchDefinition> @Switch {
+        public virtual IList<SwitchDefinition> Switch {
             get {
-                if ((this.@SwitchField == null)) {
-                    this.@SwitchField = new XTypedList<SwitchDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Switch", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.SwitchField == null)) {
+                    this.SwitchField = new XTypedList<SwitchDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Switch", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@SwitchField;
+                return this.SwitchField;
             }
             set {
                 if ((value == null)) {
-                    this.@SwitchField = null;
+                    this.SwitchField = null;
                 }
                 else {
-                    if ((this.@SwitchField == null)) {
-                        this.@SwitchField = XTypedList<SwitchDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Switch", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.SwitchField == null)) {
+                        this.SwitchField = XTypedList<SwitchDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Switch", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<SwitchDefinition>(this.@SwitchField, value);
+                        XTypedServices.SetList<SwitchDefinition>(this.SwitchField, value);
                     }
                 }
             }
@@ -6715,7 +6761,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<ThreadStampDefinition> ThreadStamp {
@@ -6748,7 +6794,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<URLDefinition> URL {
@@ -6781,7 +6827,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<XTypedElement> UrlDirName {
@@ -6814,7 +6860,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<UrlBaseNameDefinition> UrlBaseName {
@@ -6847,7 +6893,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<MeetingPropertyDefinition> MeetingProperty {
@@ -6880,7 +6926,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<ProjectPropertyDefinition> ProjectProperty {
@@ -6913,7 +6959,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<UserIDDefinition> UserID {
@@ -6946,7 +6992,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<HtmlRenderingElement> FieldSortParams {
@@ -6979,7 +7025,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> WebQueryInfo {
@@ -7012,7 +7058,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<EmptyElement> Identity {
@@ -7045,7 +7091,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<IfHasRightsDefinition> IfHasRights {
@@ -7078,7 +7124,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> MapToControl {
@@ -7111,26 +7157,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
-        public virtual IList<ForEachElement> @ForEach {
+        public virtual IList<ForEachElement> ForEach {
             get {
-                if ((this.@ForEachField == null)) {
-                    this.@ForEachField = new XTypedList<ForEachElement>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("ForEach", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.ForEachField == null)) {
+                    this.ForEachField = new XTypedList<ForEachElement>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("ForEach", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@ForEachField;
+                return this.ForEachField;
             }
             set {
                 if ((value == null)) {
-                    this.@ForEachField = null;
+                    this.ForEachField = null;
                 }
                 else {
-                    if ((this.@ForEachField == null)) {
-                        this.@ForEachField = XTypedList<ForEachElement>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("ForEach", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.ForEachField == null)) {
+                        this.ForEachField = XTypedList<ForEachElement>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("ForEach", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<ForEachElement>(this.@ForEachField, value);
+                        XTypedServices.SetList<ForEachElement>(this.ForEachField, value);
                     }
                 }
             }
@@ -7144,7 +7190,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> ContentTypes {
@@ -7177,7 +7223,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public virtual IList<CamlViewElement> MapToContentType {
@@ -7348,7 +7394,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Expr? | @Case* | @Default*)*)
+    /// Regular expression: ((Expr? | Case* | Default*)*)
     /// </para>
     /// </summary>
     public partial class SwitchDefinition : XTypedElement, IXMetaData {
@@ -7357,10 +7403,10 @@ namespace Microsoft.Schemas.SharePoint {
         private XTypedList<ExprDefinition> ExprField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<CaseDefinition> @CaseField;
+        private XTypedList<CaseDefinition> CaseField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedList<DefaultDefinition> @DefaultField;
+        private XTypedList<DefaultDefinition> DefaultField;
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
@@ -7373,7 +7419,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Expr? | @Case* | @Default*)*)
+        /// Regular expression: ((Expr? | Case* | Default*)*)
         /// </para>
         /// </summary>
         public SwitchDefinition() {
@@ -7387,7 +7433,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Expr? | @Case* | @Default*)*)
+        /// Regular expression: ((Expr? | Case* | Default*)*)
         /// </para>
         /// </summary>
         public virtual IList<ExprDefinition> Expr {
@@ -7420,26 +7466,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Expr? | @Case* | @Default*)*)
+        /// Regular expression: ((Expr? | Case* | Default*)*)
         /// </para>
         /// </summary>
-        public virtual IList<CaseDefinition> @Case {
+        public virtual IList<CaseDefinition> Case {
             get {
-                if ((this.@CaseField == null)) {
-                    this.@CaseField = new XTypedList<CaseDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Case", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.CaseField == null)) {
+                    this.CaseField = new XTypedList<CaseDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Case", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@CaseField;
+                return this.CaseField;
             }
             set {
                 if ((value == null)) {
-                    this.@CaseField = null;
+                    this.CaseField = null;
                 }
                 else {
-                    if ((this.@CaseField == null)) {
-                        this.@CaseField = XTypedList<CaseDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Case", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.CaseField == null)) {
+                        this.CaseField = XTypedList<CaseDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Case", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<CaseDefinition>(this.@CaseField, value);
+                        XTypedServices.SetList<CaseDefinition>(this.CaseField, value);
                     }
                 }
             }
@@ -7453,26 +7499,26 @@ namespace Microsoft.Schemas.SharePoint {
         /// Setter: Appends
         /// </para>
         /// <para>
-        /// Regular expression: ((Expr? | @Case* | @Default*)*)
+        /// Regular expression: ((Expr? | Case* | Default*)*)
         /// </para>
         /// </summary>
-        public virtual IList<DefaultDefinition> @Default {
+        public virtual IList<DefaultDefinition> Default {
             get {
-                if ((this.@DefaultField == null)) {
-                    this.@DefaultField = new XTypedList<DefaultDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
+                if ((this.DefaultField == null)) {
+                    this.DefaultField = new XTypedList<DefaultDefinition>(this, LinqToXsdTypeManager.Instance, System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
                 }
-                return this.@DefaultField;
+                return this.DefaultField;
             }
             set {
                 if ((value == null)) {
-                    this.@DefaultField = null;
+                    this.DefaultField = null;
                 }
                 else {
-                    if ((this.@DefaultField == null)) {
-                        this.@DefaultField = XTypedList<DefaultDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
+                    if ((this.DefaultField == null)) {
+                        this.DefaultField = XTypedList<DefaultDefinition>.Initialize(this, LinqToXsdTypeManager.Instance, value, System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
                     }
                     else {
-                        XTypedServices.SetList<DefaultDefinition>(this.@DefaultField, value);
+                        XTypedServices.SetList<DefaultDefinition>(this.DefaultField, value);
                     }
                 }
             }
@@ -7483,13 +7529,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string StripWS {
+        public virtual Microsoft.Schemas.SharePoint.TrueFalseMixed StripWS {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("StripWS", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.TrueFalseMixed)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.TrueFalseMixed), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("StripWS", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("StripWS", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -7609,7 +7655,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class CaseDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -7625,7 +7671,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public CaseDefinition() {
@@ -7740,7 +7786,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class DefaultDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -7756,7 +7802,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public DefaultDefinition() {
@@ -8199,7 +8245,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class ScriptQuoteDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -8215,7 +8261,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public ScriptQuoteDefinition() {
@@ -8465,13 +8511,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class CounterType {
+    public enum CounterType {
+        
+        View,
+    }
+    
+    public sealed class CounterTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "View"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private CounterType() {
+        private CounterTypeValidator() {
         }
     }
     
@@ -8487,13 +8538,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.CounterType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CounterType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CounterType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -8529,7 +8580,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+    /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
     /// </para>
     /// </summary>
     public partial class IfEqualDefinition : XTypedElement, IXMetaData {
@@ -8545,7 +8596,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public IfEqualDefinition() {
@@ -8556,7 +8607,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlQueryRoot Expr1 {
@@ -8574,7 +8625,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlQueryRoot Expr2 {
@@ -8592,7 +8643,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlViewRoot Then {
@@ -8610,10 +8661,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
-        public virtual CamlViewRoot @Else {
+        public virtual CamlViewRoot Else {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Else", "http://schemas.microsoft.com/sharepoint/"));
                 return ((CamlViewRoot)(x));
@@ -8771,7 +8822,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+    /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
     /// </para>
     /// </summary>
     public partial class IfSubStringDefinition : XTypedElement, IXMetaData {
@@ -8787,7 +8838,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public IfSubStringDefinition() {
@@ -8798,7 +8849,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlQueryRoot Expr1 {
@@ -8816,7 +8867,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlQueryRoot Expr2 {
@@ -8834,7 +8885,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
         public virtual CamlViewRoot Then {
@@ -8852,10 +8903,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Expr1?, Expr2?, Then?, @Else?)
+        /// Regular expression: (Expr1?, Expr2?, Then?, Else?)
         /// </para>
         /// </summary>
-        public virtual CamlViewRoot @Else {
+        public virtual CamlViewRoot Else {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Else", "http://schemas.microsoft.com/sharepoint/"));
                 return ((CamlViewRoot)(x));
@@ -9740,7 +9791,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public new virtual string @Default {
+        public new virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -9797,7 +9848,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class IfNewDefinition : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -9813,7 +9864,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public IfNewDefinition() {
@@ -10248,7 +10299,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (RightsChoices, Then, @Else?)
+    /// Regular expression: (RightsChoices, Then, Else?)
     /// </para>
     /// </summary>
     public partial class IfHasRightsDefinition : XTypedElement, IXMetaData {
@@ -10268,7 +10319,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (RightsChoices, Then, @Else?)
+        /// Regular expression: (RightsChoices, Then, Else?)
         /// </para>
         /// </summary>
         public IfHasRightsDefinition() {
@@ -10279,7 +10330,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (RightsChoices, Then, @Else?)
+        /// Regular expression: (RightsChoices, Then, Else?)
         /// </para>
         /// </summary>
         public virtual RightsChoiceDefinitions RightsChoices {
@@ -10297,7 +10348,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (RightsChoices, Then, @Else?)
+        /// Regular expression: (RightsChoices, Then, Else?)
         /// </para>
         /// </summary>
         public virtual CamlViewElement Then {
@@ -10315,10 +10366,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (RightsChoices, Then, @Else?)
+        /// Regular expression: (RightsChoices, Then, Else?)
         /// </para>
         /// </summary>
-        public virtual CamlViewElement @Else {
+        public virtual CamlViewElement Else {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Else", "http://schemas.microsoft.com/sharepoint/"));
                 return ((CamlViewElement)(x));
@@ -10485,13 +10536,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string PermAddListItems {
+        public virtual Microsoft.Schemas.SharePoint.PermissionState PermAddListItems {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("PermAddListItems", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.PermissionState)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.PermissionState), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("PermAddListItems", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("PermAddListItems", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -10500,13 +10551,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string PermEditListItems {
+        public virtual Microsoft.Schemas.SharePoint.PermissionState PermEditListItems {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("PermEditListItems", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.PermissionState)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.PermissionState), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("PermEditListItems", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("PermEditListItems", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -10540,19 +10591,24 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class PermissionState {
+    public enum PermissionState {
+        
+        required,
+    }
+    
+    public sealed class PermissionStateValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "required"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private PermissionState() {
+        private PermissionStateValidator() {
         }
     }
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class ForEachElement : global::Microsoft.Schemas.SharePoint.CamlViewElement, IXMetaData {
@@ -10568,7 +10624,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public ForEachElement() {
@@ -10699,7 +10755,28 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ContextualColorType {
+    public enum ContextualColorType {
+        
+        None,
+        
+        DarkBlue,
+        
+        LightBlue,
+        
+        Teal,
+        
+        Orange,
+        
+        Green,
+        
+        Magenta,
+        
+        Yellow,
+        
+        Purple,
+    }
+    
+    public sealed class ContextualColorTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -10713,7 +10790,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "Yellow",
                         "Purple"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ContextualColorType() {
+        private ContextualColorTypeValidator() {
         }
     }
     
@@ -10726,7 +10803,16 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class CommandTypeType {
+    public enum CommandTypeType {
+        
+        General,
+        
+        OptionSelection,
+        
+        IgnoredByMenu,
+    }
+    
+    public sealed class CommandTypeTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -10734,7 +10820,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "OptionSelection",
                         "IgnoredByMenu"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private CommandTypeType() {
+        private CommandTypeTypeValidator() {
         }
     }
     
@@ -10747,7 +10833,28 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class DisplayModeType {
+    public enum DisplayModeType {
+        
+        Default,
+        
+        Small,
+        
+        Medium,
+        
+        Large,
+        
+        Text,
+        
+        Menu,
+        
+        Menu16,
+        
+        Menu32,
+        
+        Thin,
+    }
+    
+    public sealed class DisplayModeTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -10761,11 +10868,38 @@ namespace Microsoft.Schemas.SharePoint {
                         "Menu32",
                         "Thin"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private DisplayModeType() {
+        private DisplayModeTypeValidator() {
         }
     }
     
-    public sealed class ElementDimensionsType {
+    public enum ElementDimensionsType {
+        
+        Size16by16,
+        
+        Size32by32,
+        
+        Size48by48,
+        
+        Size64by48,
+        
+        Size72by96,
+        
+        Size96by72,
+        
+        Size96by96,
+        
+        Size128by128,
+        
+        Size190by30,
+        
+        Size190by40,
+        
+        Size190by50,
+        
+        Size190by60,
+    }
+    
+    public sealed class ElementDimensionsTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -10782,7 +10916,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "Size190by50",
                         "Size190by60"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ElementDimensionsType() {
+        private ElementDimensionsTypeValidator() {
         }
     }
     
@@ -10867,7 +11001,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class SectionTypeType {
+    public enum SectionTypeType {
+        
+        Divider,
+        
+        OneRow,
+        
+        TwoRow,
+        
+        ThreeRow,
+    }
+    
+    public sealed class SectionTypeTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -10876,18 +11021,25 @@ namespace Microsoft.Schemas.SharePoint {
                         "TwoRow",
                         "ThreeRow"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private SectionTypeType() {
+        private SectionTypeTypeValidator() {
         }
     }
     
-    public sealed class SectionAlignmentType {
+    public enum SectionAlignmentType {
+        
+        Top,
+        
+        Middle,
+    }
+    
+    public sealed class SectionAlignmentTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Top",
                         "Middle"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private SectionAlignmentType() {
+        private SectionAlignmentTypeValidator() {
         }
     }
     
@@ -11005,13 +11157,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CommandType {
+        public virtual Microsoft.Schemas.SharePoint.CommandTypeType CommandType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CommandType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CommandTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CommandTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -12969,13 +13121,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Color {
+        public virtual Microsoft.Schemas.SharePoint.ContextualColorType Color {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Color", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ContextualColorType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ContextualColorType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Color", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Color", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -13227,13 +13379,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DisplayMode {
+        public virtual Microsoft.Schemas.SharePoint.DisplayModeType DisplayMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DisplayMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DisplayModeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayModeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -14405,13 +14557,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string SelectedItemDisplayMode {
+        public virtual Microsoft.Schemas.SharePoint.DisplayModeType SelectedItemDisplayMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("SelectedItemDisplayMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DisplayModeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayModeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("SelectedItemDisplayMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("SelectedItemDisplayMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -14561,13 +14713,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CommandType {
+        public virtual Microsoft.Schemas.SharePoint.CommandTypeType CommandType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CommandType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CommandTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CommandTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -15119,13 +15271,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string ElementDimensions {
+        public virtual Microsoft.Schemas.SharePoint.ElementDimensionsType ElementDimensions {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ElementDimensions", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ElementDimensionsType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ElementDimensionsType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("ElementDimensions", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("ElementDimensions", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -15305,13 +15457,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CommandType {
+        public virtual Microsoft.Schemas.SharePoint.CommandTypeType CommandType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CommandType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CommandTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CommandTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -15335,13 +15487,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string ElementDimensions {
+        public virtual Microsoft.Schemas.SharePoint.ElementDimensionsType ElementDimensions {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ElementDimensions", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ElementDimensionsType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ElementDimensionsType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("ElementDimensions", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("ElementDimensions", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -16208,13 +16360,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CommandType {
+        public virtual Microsoft.Schemas.SharePoint.CommandTypeType CommandType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CommandType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CommandTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CommandTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -18220,13 +18372,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DisplayMode {
+        public virtual Microsoft.Schemas.SharePoint.DisplayModeType DisplayMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DisplayMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, DisplayModeDefaultValue);
+                return ((Microsoft.Schemas.SharePoint.DisplayModeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayModeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype, DisplayModeDefaultValue))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -19128,13 +19280,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DisplayMode {
+        public virtual Microsoft.Schemas.SharePoint.DisplayModeType DisplayMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DisplayMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DisplayModeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayModeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -19195,13 +19347,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DisplayMode {
+        public virtual Microsoft.Schemas.SharePoint.DisplayModeType DisplayMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DisplayMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DisplayModeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayModeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DisplayMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -19261,13 +19413,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.SectionTypeType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.SectionTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.SectionTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -21093,13 +21245,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.SectionTypeType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.SectionTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.SectionTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -21108,13 +21260,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Alignment {
+        public virtual Microsoft.Schemas.SharePoint.SectionAlignmentType Alignment {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Alignment", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.SectionAlignmentType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.SectionAlignmentType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Alignment", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Alignment", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -21717,13 +21869,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CommandType {
+        public virtual Microsoft.Schemas.SharePoint.CommandTypeType CommandType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CommandType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CommandTypeType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CommandTypeType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CommandType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -23983,13 +24135,13 @@ namespace Microsoft.Schemas.SharePoint {
             /// Occurrence: required
             /// </para>
             /// </summary>
-            public virtual string DesignerType {
+            public virtual Microsoft.Schemas.SharePoint.ruleDesignerType.FieldBindLocalType.DesignerTypeEnum DesignerType {
                 get {
                     XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DesignerType", ""));
-                    return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    return ((Microsoft.Schemas.SharePoint.ruleDesignerType.FieldBindLocalType.DesignerTypeEnum)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ruleDesignerType.FieldBindLocalType.DesignerTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
                 }
                 set {
-                    this.SetAttribute(System.Xml.Linq.XName.Get("DesignerType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    this.SetAttribute(System.Xml.Linq.XName.Get("DesignerType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
             }
             
@@ -24092,6 +24244,75 @@ namespace Microsoft.Schemas.SharePoint {
             
             ContentModelEntity IXMetaData.GetContentModel() {
                 return contentModel;
+            }
+            
+            public enum DesignerTypeEnum {
+                
+                AddPermission,
+                
+                Assignment,
+                
+                Bool,
+                
+                CheckPermission,
+                
+                ChooseDoclibItem,
+                
+                ChooseListItem,
+                
+                CreateListItem,
+                
+                DataSourceFieldNames,
+                
+                DataSourceValues,
+                
+                Date,
+                
+                Dependent,
+                
+                Dropdown,
+                
+                Email,
+                
+                FieldNames,
+                
+                Float,
+                
+                Hyperlink,
+                
+                Integer,
+                
+                ListNames,
+                
+                Operator,
+                
+                ParameterNames,
+                
+                Person,
+                
+                RemovePermission,
+                
+                ReplacePermission,
+                
+                SinglePerson,
+                
+                StatusDropdown,
+                
+                StringBuilder,
+                
+                Survey,
+                
+                TaskSummary,
+                
+                Text,
+                
+                TextBox,
+                
+                TextArea,
+                
+                UpdateListItem,
+                
+                WritableFieldNames,
             }
             
             public partial class OptionLocalType : XTypedElement, IXMetaData {
@@ -24203,7 +24424,7 @@ namespace Microsoft.Schemas.SharePoint {
                 /// Occurrence: optional
                 /// </para>
                 /// </summary>
-                public virtual string @Ref {
+                public virtual string Ref {
                     get {
                         XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Ref", ""));
                         return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -24475,13 +24696,13 @@ namespace Microsoft.Schemas.SharePoint {
             /// Occurrence: required
             /// </para>
             /// </summary>
-            public virtual string Direction {
+            public virtual Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DirectionEnum Direction {
                 get {
                     XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Direction", ""));
-                    return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    return ((Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DirectionEnum)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DirectionEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
                 }
                 set {
-                    this.SetAttribute(System.Xml.Linq.XName.Get("Direction", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    this.SetAttribute(System.Xml.Linq.XName.Get("Direction", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
             }
             
@@ -24505,13 +24726,13 @@ namespace Microsoft.Schemas.SharePoint {
             /// Occurrence: optional
             /// </para>
             /// </summary>
-            public virtual string DesignerType {
+            public virtual Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DesignerTypeEnum DesignerType {
                 get {
                     XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DesignerType", ""));
-                    return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    return ((Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DesignerTypeEnum)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.parametersType.ParameterLocalType.DesignerTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
                 }
                 set {
-                    this.SetAttribute(System.Xml.Linq.XName.Get("DesignerType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                    this.SetAttribute(System.Xml.Linq.XName.Get("DesignerType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
                 }
             }
             
@@ -24587,6 +24808,58 @@ namespace Microsoft.Schemas.SharePoint {
             
             ContentModelEntity IXMetaData.GetContentModel() {
                 return ContentModelEntity.Default;
+            }
+            
+            public enum DirectionEnum {
+                
+                In,
+                
+                Out,
+                
+                Optional,
+            }
+            
+            public enum DesignerTypeEnum {
+                
+                ContentType,
+                
+                DataSourceFieldNames,
+                
+                DataSourceValues,
+                
+                Date,
+                
+                Dependent,
+                
+                Dropdown,
+                
+                FieldNames,
+                
+                Hide,
+                
+                Integer,
+                
+                ItemProperties,
+                
+                ListItem,
+                
+                ListNames,
+                
+                ParameterNames,
+                
+                Person,
+                
+                SinglePerson,
+                
+                StatusDropdown,
+                
+                StringBuilder,
+                
+                TextArea,
+                
+                TextBox,
+                
+                WritableFieldNames,
             }
         }
     }
@@ -25773,13 +26046,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string AppliesTo {
+        public virtual Microsoft.Schemas.SharePoint.appliesToTypes AppliesTo {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("AppliesTo", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.appliesToTypes)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.appliesToTypes), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("AppliesTo", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("AppliesTo", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -25878,13 +26151,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string CreatedTaskFormType {
+        public virtual Microsoft.Schemas.SharePoint.actionType.CreatedTaskFormTypeEnum CreatedTaskFormType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("CreatedTaskFormType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.actionType.CreatedTaskFormTypeEnum)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.actionType.CreatedTaskFormTypeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("CreatedTaskFormType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("CreatedTaskFormType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -25962,6 +26235,17 @@ namespace Microsoft.Schemas.SharePoint {
         
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        public enum CreatedTaskFormTypeEnum {
+            
+            DataCollectTask,
+            
+            GroupAssignedTask,
+            
+            TodoItemTask,
+            
+            TaskProcess,
         }
         
         /// <summary>
@@ -26362,7 +26646,20 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class appliesToTypes {
+    public enum appliesToTypes {
+        
+        none,
+        
+        list,
+        
+        doclib,
+        
+        all,
+        
+        displayonly,
+    }
+    
+    public sealed class appliesToTypesValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -26372,11 +26669,20 @@ namespace Microsoft.Schemas.SharePoint {
                         "all",
                         "displayonly"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private appliesToTypes() {
+        private appliesToTypesValidator() {
         }
     }
     
-    public sealed class DeleteBehaviorType {
+    public enum DeleteBehaviorType {
+        
+        None,
+        
+        Cascade,
+        
+        Restrict,
+    }
+    
+    public sealed class DeleteBehaviorTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -26384,11 +26690,46 @@ namespace Microsoft.Schemas.SharePoint {
                         "Cascade",
                         "Restrict"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private DeleteBehaviorType() {
+        private DeleteBehaviorTypeValidator() {
         }
     }
     
-    public sealed class DisplayFormat {
+    public enum DisplayFormat {
+        
+        DateOnly,
+        
+        DateTime,
+        
+        TimeOnly,
+        
+        EventList,
+        
+        ISO8601,
+        
+        MonthDayOnly,
+        
+        MonthYearOnly,
+        
+        ISO8601Basic,
+        
+        ISO8601Gregorian,
+        
+        ISO8601BasicDateOnly,
+        
+        Dropdown,
+        
+        RadioButtons,
+        
+        Hyperlink,
+        
+        Image,
+        
+        TRUE,
+        
+        FALSE,
+    }
+    
+    public sealed class DisplayFormatValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -26409,7 +26750,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "TRUE",
                         "FALSE"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private DisplayFormat() {
+        private DisplayFormatValidator() {
         }
     }
     
@@ -26425,7 +26766,16 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ListItemMenuType {
+    public enum ListItemMenuType {
+        
+        Required,
+        
+        Allowed,
+        
+        Prohibited,
+    }
+    
+    public sealed class ListItemMenuTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -26433,54 +26783,175 @@ namespace Microsoft.Schemas.SharePoint {
                         "Allowed",
                         "Prohibited"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ListItemMenuType() {
+        private ListItemMenuTypeValidator() {
         }
     }
     
-    public sealed class NegativeFormat {
+    public enum NegativeFormat {
+        
+        MinusSign,
+        
+        Parens,
+    }
+    
+    public sealed class NegativeFormatValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "MinusSign",
                         "Parens"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private NegativeFormat() {
+        private NegativeFormatValidator() {
         }
     }
     
-    public sealed class IMEMode {
+    public enum IMEMode {
+        
+        inactive,
+    }
+    
+    public sealed class IMEModeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "inactive"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private IMEMode() {
+        private IMEModeValidator() {
         }
     }
     
-    public sealed class EventReceiverScope {
+    public enum EventReceiverScope {
+        
+        Site,
+        
+        Web,
+    }
+    
+    public sealed class EventReceiverScopeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Site",
                         "Web"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private EventReceiverScope() {
+        private EventReceiverScopeValidator() {
         }
     }
     
-    public sealed class EventReceiverSynchronization {
+    public enum EventReceiverSynchronization {
+        
+        Synchronous,
+        
+        Asynchronous,
+    }
+    
+    public sealed class EventReceiverSynchronizationValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Synchronous",
                         "Asynchronous"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private EventReceiverSynchronization() {
+        private EventReceiverSynchronizationValidator() {
         }
     }
     
-    public sealed class EventReceiverType {
+    public enum EventReceiverType {
+        
+        ItemAdding,
+        
+        ItemUpdating,
+        
+        ItemDeleting,
+        
+        ItemCheckingIn,
+        
+        ItemCheckingOut,
+        
+        ItemUncheckingOut,
+        
+        ItemAttachmentAdding,
+        
+        ItemAttachmentDeleting,
+        
+        ItemFileMoving,
+        
+        FieldAdding,
+        
+        FieldUpdating,
+        
+        FieldDeleting,
+        
+        ListAdding,
+        
+        ListDeleting,
+        
+        SiteDeleting,
+        
+        WebDeleting,
+        
+        WebMoving,
+        
+        WebAdding,
+        
+        WorkflowStarting,
+        
+        WorkflowLoading,
+        
+        WorkflowUnloading,
+        
+        ItemAdded,
+        
+        ItemUpdated,
+        
+        ItemDeleted,
+        
+        ItemCheckedIn,
+        
+        ItemCheckedOut,
+        
+        ItemUncheckedOut,
+        
+        ItemAttachmentAdded,
+        
+        ItemAttachmentDeleted,
+        
+        ItemFileMoved,
+        
+        ItemFileConverted,
+        
+        FieldAdded,
+        
+        FieldUpdated,
+        
+        FieldDeleted,
+        
+        ListAdded,
+        
+        ListDeleted,
+        
+        SiteDeleted,
+        
+        WebDeleted,
+        
+        WebMoved,
+        
+        WebProvisioned,
+        
+        WorkflowStarted,
+        
+        WorkflowPostponed,
+        
+        WorkflowCompleted,
+        
+        EmailReceived,
+        
+        ContextEvent,
+        
+        ContextLookupReceivers,
+    }
+    
+    public sealed class EventReceiverTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -26531,7 +27002,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "ContextEvent",
                         "ContextLookupReceivers"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private EventReceiverType() {
+        private EventReceiverTypeValidator() {
         }
     }
     
@@ -27289,7 +27760,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
     /// </para>
     /// </summary>
     public partial class FieldDefinition : XTypedElement, IXMetaData {
@@ -27305,7 +27776,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public FieldDefinition() {
@@ -27316,7 +27787,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual FieldRefDefinitions FieldRefs {
@@ -27334,7 +27805,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual CamlViewRoot DisplayPattern {
@@ -27352,7 +27823,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual CamlViewRoot DisplayBidiPattern {
@@ -27370,7 +27841,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual CHOICEDEFINITIONS CHOICES {
@@ -27388,7 +27859,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual MAPPINGDEFINITIONS MAPPINGS {
@@ -27406,10 +27877,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -27424,7 +27895,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual string Formula {
@@ -27442,7 +27913,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual string FormulaDisplayNames {
@@ -27460,7 +27931,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual string DefaultFormula {
@@ -27478,7 +27949,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual ValidationDefinition Validation {
@@ -27496,7 +27967,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public virtual CustomizationDefinition Customization {
@@ -27913,13 +28384,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string ListItemMenuAllowed {
+        public virtual Microsoft.Schemas.SharePoint.ListItemMenuType ListItemMenuAllowed {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ListItemMenuAllowed", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ListItemMenuType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ListItemMenuType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("ListItemMenuAllowed", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("ListItemMenuAllowed", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -28063,13 +28534,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Format {
+        public virtual Microsoft.Schemas.SharePoint.DisplayFormat Format {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Format", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DisplayFormat)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DisplayFormat), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Format", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Format", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -28171,13 +28642,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string IMEMode {
+        public virtual Microsoft.Schemas.SharePoint.IMEMode IMEMode {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("IMEMode", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.IMEMode)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.IMEMode), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("IMEMode", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("IMEMode", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -28291,13 +28762,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string LinkToItemAllowed {
+        public virtual Microsoft.Schemas.SharePoint.ListItemMenuType LinkToItemAllowed {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("LinkToItemAllowed", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ListItemMenuType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ListItemMenuType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("LinkToItemAllowed", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("LinkToItemAllowed", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -28567,7 +29038,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @ReadOnly {
+        public virtual string ReadOnly {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ReadOnly", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -28597,13 +29068,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string RelationshipDeleteBehavior {
+        public virtual Microsoft.Schemas.SharePoint.DeleteBehaviorType RelationshipDeleteBehavior {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("RelationshipDeleteBehavior", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DeleteBehaviorType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DeleteBehaviorType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("RelationshipDeleteBehavior", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("RelationshipDeleteBehavior", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -28702,7 +29173,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Sealed {
+        public virtual string Sealed {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Sealed", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -29492,7 +29963,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -30263,7 +30734,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+    /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
     /// </para>
     /// </summary>
     public partial class ToolbarDefinition : global::Microsoft.Schemas.SharePoint.CamlViewRoot, IXMetaData {
@@ -30279,7 +30750,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | @Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | @ForEach | ContentTypes | MapToContentType)*)
+        /// Regular expression: ((Column | Column2 | Counter | CurrentRights | Field | FieldPrefix | FieldProperty | Fields | FieldSwitch | FilterLink | GetFileExtension | GetVar | HTML | HttpHost | HttpPath | HttpVDir | ID | IfEqual | IfNeg | IfNew | IfSubString | Length | Limit | List | ListUrl | ListUrlDir | ListProperty | LookupColumn | MapToAll | MapToIcon | PageUrl | Property | ScriptQuote | SelectionOptions | ServerProperty | SetVar | Switch | ThreadStamp | URL | UrlDirName | UrlBaseName | MeetingProperty | ProjectProperty | UserID | FieldSortParams | WebQueryInfo | Identity | IfHasRights | MapToControl | ForEach | ContentTypes | MapToContentType)*)
         /// </para>
         /// </summary>
         public ToolbarDefinition() {
@@ -30290,13 +30761,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Position {
+        public virtual Microsoft.Schemas.SharePoint.ToolbarPosition Position {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Position", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ToolbarPosition)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ToolbarPosition), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Position", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Position", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -30305,13 +30776,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.ToolbarType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ToolbarType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ToolbarType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -30407,7 +30878,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ToolbarType {
+    public enum ToolbarType {
+        
+        Standard,
+        
+        FreeForm,
+        
+        RelatedTasks,
+        
+        Freeform,
+    }
+    
+    public sealed class ToolbarTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -30416,17 +30898,22 @@ namespace Microsoft.Schemas.SharePoint {
                         "RelatedTasks",
                         "Freeform"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ToolbarType() {
+        private ToolbarTypeValidator() {
         }
     }
     
-    public sealed class ToolbarPosition {
+    public enum ToolbarPosition {
+        
+        After,
+    }
+    
+    public sealed class ToolbarPositionValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "After"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ToolbarPosition() {
+        private ToolbarPositionValidator() {
         }
     }
     
@@ -31047,7 +31534,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @ReadOnly {
+        public virtual string ReadOnly {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ReadOnly", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -31401,13 +31888,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string TargetType {
+        public virtual Microsoft.Schemas.SharePoint.ViewRegistrationType TargetType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("TargetType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ViewRegistrationType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ViewRegistrationType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("TargetType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("TargetType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -31691,7 +32178,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -31799,13 +32286,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string EnableModeration {
+        public virtual Microsoft.Schemas.SharePoint.TrueFalseMixed EnableModeration {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("EnableModeration", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.TrueFalseMixed)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.TrueFalseMixed), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("EnableModeration", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("EnableModeration", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -33012,7 +33499,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -33207,7 +33694,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -34584,13 +35071,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string NavBarHome {
+        public virtual Microsoft.Schemas.SharePoint.TrueFalseMixed NavBarHome {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("NavBarHome", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.TrueFalseMixed)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.TrueFalseMixed), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("NavBarHome", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("NavBarHome", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -34614,13 +35101,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.FileGhostType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.FileGhostType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.FileGhostType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -34629,13 +35116,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Level {
+        public virtual Microsoft.Schemas.SharePoint.FileLevelType Level {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Level", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.FileLevelType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.FileLevelType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Level", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Level", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -34730,24 +35217,36 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class FileGhostType {
+    public enum FileGhostType {
+        
+        Ghostable,
+        
+        GhostableInLibrary,
+    }
+    
+    public sealed class FileGhostTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Ghostable",
                         "GhostableInLibrary"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private FileGhostType() {
+        private FileGhostTypeValidator() {
         }
     }
     
-    public sealed class FileLevelType {
+    public enum FileLevelType {
+        
+        Draft,
+    }
+    
+    public sealed class FileLevelTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Draft"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private FileLevelType() {
+        private FileLevelTypeValidator() {
         }
     }
     
@@ -35130,7 +35629,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @ReadOnly {
+        public virtual string ReadOnly {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ReadOnly", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -35223,13 +35722,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.ViewPartType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ViewPartType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ViewPartType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -35680,7 +36179,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Class", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -35907,7 +36406,26 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ViewPartType {
+    public enum ViewPartType {
+        
+        HTML,
+        
+        Chart,
+        
+        CHART,
+        
+        Pivot,
+        
+        PIVOT,
+        
+        GANTT,
+        
+        GRID,
+        
+        CALENDAR,
+    }
+    
+    public sealed class ViewPartTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -35920,7 +36438,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "GRID",
                         "CALENDAR"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ViewPartType() {
+        private ViewPartTypeValidator() {
         }
     }
     
@@ -36243,7 +36761,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Namespace {
+        public virtual string Namespace {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Namespace", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -38407,13 +38925,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.FeatureScope Scope {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Scope", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.FeatureScope)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.FeatureScope), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -38666,7 +39184,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class FeatureScope {
+    public enum FeatureScope {
+        
+        Farm,
+        
+        WebApplication,
+        
+        Site,
+        
+        Web,
+    }
+    
+    public sealed class FeatureScopeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -38675,7 +39204,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "Site",
                         "Web"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private FeatureScope() {
+        private FeatureScopeValidator() {
         }
     }
     
@@ -39934,7 +40463,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @ReadOnly {
+        public virtual string ReadOnly {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ReadOnly", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -39994,7 +40523,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Sealed {
+        public virtual string Sealed {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Sealed", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -40590,13 +41119,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DeploymentServerType {
+        public virtual Microsoft.Schemas.SharePoint.DeploymentServerTypeAttr DeploymentServerType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DeploymentServerType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.DeploymentServerTypeAttr)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.DeploymentServerTypeAttr), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DeploymentServerType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DeploymentServerType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -40620,13 +41149,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string ResetWebServerModeOnUpgrade {
+        public virtual Microsoft.Schemas.SharePoint.ResetWebServerModeOnUpgradeAttr ResetWebServerModeOnUpgrade {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ResetWebServerModeOnUpgrade", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ResetWebServerModeOnUpgradeAttr)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ResetWebServerModeOnUpgradeAttr), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("ResetWebServerModeOnUpgrade", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("ResetWebServerModeOnUpgrade", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -40680,25 +41209,39 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class DeploymentServerTypeAttr {
+    public enum DeploymentServerTypeAttr {
+        
+        ApplicationServer,
+        
+        WebFrontEnd,
+    }
+    
+    public sealed class DeploymentServerTypeAttrValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "ApplicationServer",
                         "WebFrontEnd"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private DeploymentServerTypeAttr() {
+        private DeploymentServerTypeAttrValidator() {
         }
     }
     
-    public sealed class ResetWebServerModeOnUpgradeAttr {
+    public enum ResetWebServerModeOnUpgradeAttr {
+        
+        Recycle,
+        
+        StartStop,
+    }
+    
+    public sealed class ResetWebServerModeOnUpgradeAttrValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Recycle",
                         "StartStop"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ResetWebServerModeOnUpgradeAttr() {
+        private ResetWebServerModeOnUpgradeAttrValidator() {
         }
     }
     
@@ -42544,13 +43087,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string RequiredAdmin {
+        public virtual Microsoft.Schemas.SharePoint.RequiredAdminType RequiredAdmin {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RequiredAdminType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RequiredAdminType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -42724,13 +43267,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string RegistrationType {
+        public virtual Microsoft.Schemas.SharePoint.CustomActionRegistrationType RegistrationType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("RegistrationType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.CustomActionRegistrationType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.CustomActionRegistrationType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("RegistrationType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("RegistrationType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -43078,7 +43621,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class CustomActionRegistrationType {
+    public enum CustomActionRegistrationType {
+        
+        List,
+        
+        ContentType,
+        
+        FileType,
+        
+        ProgId,
+    }
+    
+    public sealed class CustomActionRegistrationTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -43087,7 +43641,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "FileType",
                         "ProgId"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private CustomActionRegistrationType() {
+        private CustomActionRegistrationTypeValidator() {
         }
     }
     
@@ -43235,13 +43789,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string RequiredAdmin {
+        public virtual Microsoft.Schemas.SharePoint.RequiredAdminType RequiredAdmin {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RequiredAdminType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RequiredAdminType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("RequiredAdmin", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -43647,7 +44201,16 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class RequiredAdminType {
+    public enum RequiredAdminType {
+        
+        Delegated,
+        
+        Farm,
+        
+        Machine,
+    }
+    
+    public sealed class RequiredAdminTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -43655,13 +44218,13 @@ namespace Microsoft.Schemas.SharePoint {
                         "Farm",
                         "Machine"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private RequiredAdminType() {
+        private RequiredAdminTypeValidator() {
         }
     }
     
     /// <summary>
     /// <para>
-    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
     /// </para>
     /// </summary>
     public partial class SharedFieldReference : global::Microsoft.Schemas.SharePoint.FieldDefinition, IXMetaData {
@@ -43677,7 +44240,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public SharedFieldReference() {
@@ -44960,7 +45523,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Class", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -45011,7 +45574,32 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class RenderPatternName {
+    public enum RenderPatternName {
+        
+        DisplayBidiPattern,
+        
+        DisplayPattern,
+        
+        EditBidiPattern,
+        
+        EditPattern,
+        
+        HeaderBidiPattern,
+        
+        HeaderPattern,
+        
+        NewBidiPattern,
+        
+        NewPattern,
+        
+        PreviewDisplayPattern,
+        
+        PreviewNewPattern,
+        
+        PreviewEditPattern,
+    }
+    
+    public sealed class RenderPatternNameValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -45027,11 +45615,38 @@ namespace Microsoft.Schemas.SharePoint {
                         "PreviewNewPattern",
                         "PreviewEditPattern"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private RenderPatternName() {
+        private RenderPatternNameValidator() {
         }
     }
     
-    public sealed class RenderPatternType {
+    public enum RenderPatternType {
+        
+        Boolean,
+        
+        Choice,
+        
+        Counter,
+        
+        Currency,
+        
+        DateTime,
+        
+        Integer,
+        
+        Lookup,
+        
+        Note,
+        
+        Number,
+        
+        Text,
+        
+        Threading,
+        
+        URL,
+    }
+    
+    public sealed class RenderPatternTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -45048,7 +45663,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "Threading",
                         "URL"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private RenderPatternType() {
+        private RenderPatternTypeValidator() {
         }
     }
     
@@ -45079,13 +45694,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual Microsoft.Schemas.SharePoint.RenderPatternType Type {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Type", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RenderPatternType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RenderPatternType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Type", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -45094,13 +45709,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Name {
+        public virtual Microsoft.Schemas.SharePoint.RenderPatternName Name {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Name", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.RenderPatternName)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.RenderPatternName), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Name", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Name", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -45124,13 +45739,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Implementation {
+        public virtual Microsoft.Schemas.SharePoint.FieldControlImplementationType Implementation {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Implementation", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.FieldControlImplementationType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.FieldControlImplementationType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Implementation", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Implementation", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -45404,13 +46019,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DeploymentTarget {
+        public virtual Microsoft.Schemas.SharePoint.SolutionDeploymentTargetType DeploymentTarget {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("DeploymentTarget", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.SolutionDeploymentTargetType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.SolutionDeploymentTargetType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("DeploymentTarget", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("DeploymentTarget", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -46137,13 +46752,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string @class {
+        public virtual Microsoft.Schemas.SharePoint.PermssionSetClassAttr @class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("class", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.PermssionSetClassAttr)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.PermssionSetClassAttr), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("class", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("class", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -46233,13 +46848,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class PermssionSetClassAttr {
+    public enum PermssionSetClassAttr {
+        
+        NamedPermissionSet,
+    }
+    
+    public sealed class PermssionSetClassAttrValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "NamedPermissionSet"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private PermssionSetClassAttr() {
+        private PermssionSetClassAttrValidator() {
         }
     }
     
@@ -46519,13 +47139,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.ItemEventScope Scope {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Scope", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ItemEventScope)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ItemEventScope), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -46534,13 +47154,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string EventType {
+        public virtual Microsoft.Schemas.SharePoint.ItemEventType EventType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("EventType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.ItemEventType)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.ItemEventType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("EventType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("EventType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -46587,7 +47207,16 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ItemEventScope {
+    public enum ItemEventScope {
+        
+        Web,
+        
+        List,
+        
+        ContentType,
+    }
+    
+    public sealed class ItemEventScopeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -46595,7 +47224,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "List",
                         "ContentType"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ItemEventScope() {
+        private ItemEventScopeValidator() {
         }
     }
     
@@ -46699,7 +47328,56 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ItemEventType {
+    public enum ItemEventType {
+        
+        ItemAdding,
+        
+        ItemAdded,
+        
+        ItemUpdating,
+        
+        ItemUpdated,
+        
+        ItemDeleting,
+        
+        ItemDeleted,
+        
+        ItemCheckingIn,
+        
+        ItemCheckedIn,
+        
+        ItemCheckingOut,
+        
+        ItemUncheckingIn,
+        
+        ItemUncheckingOut,
+        
+        ItemMoving,
+        
+        ItemMoved,
+        
+        ItemFileUpdating,
+        
+        ItemFileUpdated,
+        
+        ItemFileRenaming,
+        
+        ItemFileRenamed,
+        
+        ItemFileReceiving,
+        
+        ItemFileReceived,
+        
+        ItemAttachmentAdding,
+        
+        ItemAttachmentAdded,
+        
+        ItemAttachmentDeleting,
+        
+        ItemAttachmentDeleted,
+    }
+    
+    public sealed class ItemEventTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -46727,7 +47405,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "ItemAttachmentDeleting",
                         "ItemAttachmentDeleted"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ItemEventType() {
+        private ItemEventTypeValidator() {
         }
     }
     
@@ -46917,14 +47595,21 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class FieldControlImplementationType {
+    public enum FieldControlImplementationType {
+        
+        Caml,
+        
+        Control,
+    }
+    
+    public sealed class FieldControlImplementationTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "Caml",
                         "Control"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private FieldControlImplementationType() {
+        private FieldControlImplementationTypeValidator() {
         }
     }
     
@@ -47152,7 +47837,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @ReadOnly {
+        public virtual string ReadOnly {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ReadOnly", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -47197,7 +47882,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Sealed {
+        public virtual string Sealed {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Sealed", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -47592,7 +48277,16 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ContentTypeItemStructure {
+    public enum ContentTypeItemStructure {
+        
+        ListItem,
+        
+        Document,
+        
+        Folder,
+    }
+    
+    public sealed class ContentTypeItemStructureValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -47600,7 +48294,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "Document",
                         "Folder"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ContentTypeItemStructure() {
+        private ContentTypeItemStructureValidator() {
         }
     }
     
@@ -47715,7 +48409,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Default", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -48316,14 +49010,21 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class ViewRegistrationType {
+    public enum ViewRegistrationType {
+        
+        List,
+        
+        ContentType,
+    }
+    
+    public sealed class ViewRegistrationTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "List",
                         "ContentType"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private ViewRegistrationType() {
+        private ViewRegistrationTypeValidator() {
         }
     }
     
@@ -48498,7 +49199,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+    /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
     /// </para>
     /// </summary>
     public partial class ListMetaDataDefinition : XTypedElement, IXMetaData {
@@ -48514,7 +49215,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public ListMetaDataDefinition() {
@@ -48525,7 +49226,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual FieldDefinitions Fields {
@@ -48543,7 +49244,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual ListFormSet Forms {
@@ -48561,10 +49262,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
-        public virtual ListMetaDataDefault @Default {
+        public virtual ListMetaDataDefault Default {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Default", "http://schemas.microsoft.com/sharepoint/"));
                 return ((ListMetaDataDefault)(x));
@@ -48579,7 +49280,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual string DefaultDescription {
@@ -48597,7 +49298,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual ViewDefinitions Views {
@@ -48615,7 +49316,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual ToolbarDefinition Toolbar {
@@ -48633,7 +49334,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual ContentTypeReferences ContentTypes {
@@ -48651,7 +49352,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Fields?, Forms?, @Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
+        /// Regular expression: (Fields?, Forms?, Default?, DefaultDescription?, Views?, Toolbar?, ContentTypes?, Validation?)
         /// </para>
         /// </summary>
         public virtual ValidationDefinition Validation {
@@ -48841,7 +49542,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Namespace {
+        public virtual string Namespace {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Namespace", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -48871,13 +49572,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Safe {
+        public virtual Microsoft.Schemas.SharePoint.TrueFalseMixed Safe {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Safe", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.TrueFalseMixed)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.TrueFalseMixed), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Safe", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Safe", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -48886,13 +49587,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string SafeAgainstScript {
+        public virtual Microsoft.Schemas.SharePoint.TrueFalseMixed SafeAgainstScript {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("SafeAgainstScript", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.TrueFalseMixed)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.TrueFalseMixed), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("SafeAgainstScript", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("SafeAgainstScript", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -49423,13 +50124,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.EventReceiverScope Scope {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Scope", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.EventReceiverScope)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.EventReceiverScope), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("Scope", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -49476,7 +50177,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+    /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
     /// </para>
     /// </summary>
     public partial class ReceiverDefinition : XTypedElement, IXMetaData {
@@ -49492,7 +50193,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public ReceiverDefinition() {
@@ -49503,7 +50204,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string Name {
@@ -49521,16 +50222,16 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
-        public virtual string Synchronization {
+        public virtual EventReceiverSynchronization Synchronization {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Synchronization", "http://schemas.microsoft.com/sharepoint/"));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((EventReceiverSynchronization)(Enum.Parse(typeof(EventReceiverSynchronization), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("Synchronization", "http://schemas.microsoft.com/sharepoint/"), value, "Synchronization", global::Microsoft.Schemas.SharePoint.EventReceiverSynchronization.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("Synchronization", "http://schemas.microsoft.com/sharepoint/"), value.ToString(), "Synchronization", global::Microsoft.Schemas.SharePoint.EventReceiverSynchronizationValidator.TypeDefinition);
             }
         }
         
@@ -49539,16 +50240,16 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
-        public virtual string Type {
+        public virtual EventReceiverType Type {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Type", "http://schemas.microsoft.com/sharepoint/"));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((EventReceiverType)(Enum.Parse(typeof(EventReceiverType), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetElementWithValidation(System.Xml.Linq.XName.Get("Type", "http://schemas.microsoft.com/sharepoint/"), value, "Type", global::Microsoft.Schemas.SharePoint.EventReceiverType.TypeDefinition);
+                this.SetElementWithValidation(System.Xml.Linq.XName.Get("Type", "http://schemas.microsoft.com/sharepoint/"), value.ToString(), "Type", global::Microsoft.Schemas.SharePoint.EventReceiverTypeValidator.TypeDefinition);
             }
         }
         
@@ -49557,7 +50258,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string SequenceNumber {
@@ -49575,7 +50276,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string Assembly {
@@ -49593,10 +50294,10 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XElement x = this.GetElement(System.Xml.Linq.XName.Get("Class", "http://schemas.microsoft.com/sharepoint/"));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -49611,7 +50312,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string Data {
@@ -49629,7 +50330,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string Filter {
@@ -49647,7 +50348,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string SolutionId {
@@ -49665,7 +50366,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string SourceId {
@@ -49683,7 +50384,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// <para>
-        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, @Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
+        /// Regular expression: (Name?, Synchronization?, Type?, SequenceNumber?, Assembly?, Class?, Data?, Filter?, SolutionId?, SourceId?, SourceType?)
         /// </para>
         /// </summary>
         public virtual string SourceType {
@@ -49774,7 +50475,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Class", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -49841,7 +50542,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Class", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -49970,7 +50671,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string @Class {
+        public virtual string Class {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("Class", ""));
                 return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
@@ -50516,14 +51217,21 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class SolutionDeploymentTargetType {
+    public enum SolutionDeploymentTargetType {
+        
+        GlobalAssemblyCache,
+        
+        WebApplication,
+    }
+    
+    public sealed class SolutionDeploymentTargetTypeValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "GlobalAssemblyCache",
                         "WebApplication"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private SolutionDeploymentTargetType() {
+        private SolutionDeploymentTargetTypeValidator() {
         }
     }
     
@@ -52098,7 +52806,7 @@ namespace Microsoft.Schemas.SharePoint {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+    /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
     /// </para>
     /// </summary>
     public partial class SharedFieldDefinition : global::Microsoft.Schemas.SharePoint.FieldDefinition, IXMetaData {
@@ -52114,7 +52822,7 @@ namespace Microsoft.Schemas.SharePoint {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, @Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
+        /// Regular expression: (FieldRefs?, DisplayPattern?, DisplayBidiPattern?, CHOICES?, MAPPINGS?, Default?, Formula?, FormulaDisplayNames?, DefaultFormula?, Validation?, Customization?)
         /// </para>
         /// </summary>
         public SharedFieldDefinition() {
@@ -53296,13 +54004,13 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string ParentType {
+        public virtual Microsoft.Schemas.SharePoint.PropertyBagParentTypeDefinition ParentType {
             get {
                 XAttribute x = this.Attribute(System.Xml.Linq.XName.Get("ParentType", ""));
-                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                return ((Microsoft.Schemas.SharePoint.PropertyBagParentTypeDefinition)(Enum.Parse(typeof(Microsoft.Schemas.SharePoint.PropertyBagParentTypeDefinition), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype))));
             }
             set {
-                this.SetAttribute(System.Xml.Linq.XName.Get("ParentType", ""), value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+                this.SetAttribute(System.Xml.Linq.XName.Get("ParentType", ""), value.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
         
@@ -53377,7 +54085,18 @@ namespace Microsoft.Schemas.SharePoint {
         }
     }
     
-    public sealed class PropertyBagParentTypeDefinition {
+    public enum PropertyBagParentTypeDefinition {
+        
+        Web,
+        
+        Folder,
+        
+        ListItem,
+        
+        File,
+    }
+    
+    public sealed class PropertyBagParentTypeDefinitionValidator {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
@@ -53386,7 +54105,7 @@ namespace Microsoft.Schemas.SharePoint {
                         "ListItem",
                         "File"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
         
-        private PropertyBagParentTypeDefinition() {
+        private PropertyBagParentTypeDefinitionValidator() {
         }
     }
     
@@ -54120,7 +54839,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: required
         /// </para>
         /// </summary>
-        public virtual string Scope {
+        public virtual Microsoft.Schemas.SharePoint.FeatureScope Scope {
             get {
                 return this.ContentField.Scope;
             }
@@ -55182,7 +55901,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string DeploymentServerType {
+        public virtual Microsoft.Schemas.SharePoint.DeploymentServerTypeAttr DeploymentServerType {
             get {
                 return this.ContentField.DeploymentServerType;
             }
@@ -55210,7 +55929,7 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string ResetWebServerModeOnUpgrade {
+        public virtual Microsoft.Schemas.SharePoint.ResetWebServerModeOnUpgradeAttr ResetWebServerModeOnUpgrade {
             get {
                 return this.ContentField.ResetWebServerModeOnUpgrade;
             }
@@ -55751,12 +56470,12 @@ namespace Microsoft.Schemas.SharePoint {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual string @Default {
+        public virtual string Default {
             get {
-                return this.ContentField.@Default;
+                return this.ContentField.Default;
             }
             set {
-                this.ContentField.@Default = value;
+                this.ContentField.Default = value;
             }
         }
         
@@ -56201,6 +56920,9 @@ namespace Microsoft.Schemas.SharePoint {
             BuildWrapperDictionary();
         }
         
+        private LinqToXsdTypeManager() {
+        }
+        
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
                 if ((schemaSet == null)) {
@@ -56612,6 +57334,12 @@ namespace Microsoft.Schemas.SharePoint {
             }
         }
         
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
         public static XRootNamespace Load(string xmlFile) {
             XRootNamespace root = new XRootNamespace();
             root.doc = XDocument.Load(xmlFile);
@@ -56767,6 +57495,12 @@ namespace Microsoft.Schemas.SharePoint {
         public virtual XDocument XDocument {
             get {
                 return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
             }
         }
         

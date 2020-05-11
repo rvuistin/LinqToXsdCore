@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 using Microsoft.Schemas.SharePoint;
 using NUnit.Framework;
+using W3C;
 using W3C.XSD;
+using XObjectsTests.Schemas.AbstractTest;
 
 namespace Xml.Schema.Linq.Tests.API
 {
@@ -79,7 +83,6 @@ namespace Xml.Schema.Linq.Tests.API
 
             var xsdExample = new schema() {
                 targetNamespace = new Uri("http://www.w3.org/XML/1998/namespace"),
-                //lang = "en",
                 attribute = new List<attribute>() {
                     new attribute(new topLevelAttribute() { name = "base", type = new XmlQualifiedName("anyURI") }),
                     new attribute(new topLevelAttribute() { name = "lang", type = new XmlQualifiedName("language") }),
@@ -97,11 +100,47 @@ namespace Xml.Schema.Linq.Tests.API
                 }
             };
 
+            Assert.DoesNotThrow(() => { xsdExample.lang = "en-GB"; });
+
             var xsdString = xsdExample.ToString();
 
             Assert.DoesNotThrow(() => {
                 schema schema = schema.Parse(xsdString);
+
+                Assert.IsNotNull(schema.lang as string);
             });
+        }
+
+        [Test]
+        public void TestXsiTypeAddedToAmbiguousElementNames()
+        {
+            var o = new XObjectsTests.Schemas.AbstractTest.Action
+            {
+                ActionInfo = new Record
+                {
+                    id = "7"
+                },
+                Commands = new BaseCommand[]
+                {
+                    new UpdateCommand
+                    {
+                        value = "updated"
+                    }
+                }
+            };
+
+            o.Untyped.Add(new XAttribute(XNamespace.Xmlns + "xsi", XmlSchema.InstanceNamespace));
+
+            var expectedXml = @"<Action xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""http://example.org/AbstractTest"">
+      <ActionInfo  id=""7"" xsi:type=""Record"" />
+      <Commands  value=""updated"" xsi:type=""UpdateCommand""/>
+    </Action>";
+
+
+            var actualXml = o.ToString();
+            
+            Assert.IsTrue(XNode.DeepEquals(XElement.Parse(expectedXml), XElement.Parse(actualXml)),
+                String.Format("{0} \n does not equal \n{1}", actualXml, expectedXml));
         }
     }
 }

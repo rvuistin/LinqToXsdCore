@@ -80,9 +80,17 @@ namespace Xml.Schema.Linq.CodeGen
                     ClrSimpleTypeInfo stInfo = type as ClrSimpleTypeInfo;
                     if (stInfo != null)
                     {
-                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo)
-                        {
-                            codeNamespace.Types.Add(TypeBuilder.CreateEnumType(enumTypeInfo, settings));
+                        if (stInfo is EnumSimpleTypeInfo enumTypeInfo) {
+                            var enumType = TypeBuilder.CreateEnumType(enumTypeInfo, settings);
+                            codeNamespace.Types.Add(enumType);
+                            var enumsInOtherTypes = codeNamespace.DescendentTypeScopedEnumDeclarations();
+                            // if an enum is defined in another type, remove it, if it is the same as the global (namespace scoped type)
+                            if (enumsInOtherTypes.EnumDeclarationExists(enumType)) {
+                                var typeWithDuplicateEnum = codeNamespace.TypeWithEnumDeclaration(enumType);
+                                var duplicateEnum = typeWithDuplicateEnum.Members.OfType<CodeTypeDeclaration>()
+                                    .First(c => c.IsEquivalentEnumDeclaration(enumType));
+                                typeWithDuplicateEnum.Members.Remove(duplicateEnum);
+                            }
                         }
                         codeNamespace.Types.Add(TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings));
                     }
@@ -181,9 +189,12 @@ namespace Xml.Schema.Linq.CodeGen
                     ClrPropertyInfo propertyInfo = child as ClrPropertyInfo;
 
                     var typeRef = propertyInfo.TypeReference;
-                    if (typeRef.IsEnum && string.IsNullOrEmpty(typeRef.Name))
+                    if (typeRef.IsEnum)
                     {
-                        typeRef.Name = $"{propertyInfo.PropertyName}s";
+                        if (string.IsNullOrEmpty(typeRef.Name)) {
+                            typeRef.Name = $"{propertyInfo.PropertyName}s";
+                        }
+
                         CreateNestedEnumType(typeRef);
                     }
 
@@ -212,12 +223,25 @@ namespace Xml.Schema.Linq.CodeGen
             var innerType = typeRef.SchemaObject as XmlSchemaType;
             Debug.Assert(innerType != null);
             var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) { IsEnum = true };
-            enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | TypeAttributes.Public;
+            enumTypeDecl.TypeAttributes = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace).ToTypeAttribute();
             foreach (var facet in innerType.GetEnumFacets())
             {
                 enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet));
             }
-            typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
+
+            if (!EnumTypeDeclarationExists(enumTypeDecl)) {
+                typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
+            }
+        }
+
+        private bool EnumTypeDeclarationExists(CodeTypeDeclaration ctd)
+        {
+            var enumsUnderNamespace = codeNamespace.DescendentTypeScopedEnumDeclarations();
+            var enumsInOtherTypesUnderNamespace = codeNamespace.NamespaceScopedEnumDeclarations();
+            var enumsInCurrentType = typeBuilder.TypeDeclaration.Members.OfType<CodeTypeDeclaration>().Where(c => c.IsEnum);
+            var allEnumsDefinedAlready = enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
+
+            return allEnumsDefinedAlready.EnumDeclarationExists(ctd);
         }
 
         private void ProcessGroup(GroupingInfo grouping, List<ClrAnnotation> annotations)
@@ -331,6 +355,7 @@ namespace Xml.Schema.Linq.CodeGen
             lst.RegisterMember("Parse");
             lst.RegisterMember("Save");
             lst.RegisterMember("XDocument");
+            lst.RegisterMember("Root");
 
             // Constructor
             xroot.Members.Add(CodeDomHelper.CreateConstructor(MemberAttributes.Private));
@@ -389,12 +414,19 @@ namespace Xml.Schema.Linq.CodeGen
                 new string[] {"SaveOptions", "options"}
             }, visibility));
 
-            CodeMemberProperty prop = CodeDomHelper.CreateProperty("XDocument",
+            CodeMemberProperty docProp = CodeDomHelper.CreateProperty("XDocument",
                 "XDocument",
                 docField,
                 visibility.ToMemberAttribute(),
                 false);
-            xroot.Members.Add(prop);
+            xroot.Members.Add(docProp);
+
+            CodeMemberProperty rootProp = CodeDomHelper.CreateProperty("Root",
+                "XTypedElement",
+                rootField,
+                visibility.ToMemberAttribute(),
+                false);
+            xroot.Members.Add(rootProp);
 
             for (int i = 0; i < elements.Count; i++)
             {
