@@ -1,5 +1,7 @@
 ﻿using System;
+
 using Xml.Schema.Linq.Extensions;
+
 using XObjects;
 
 namespace Xml.Schema.Linq

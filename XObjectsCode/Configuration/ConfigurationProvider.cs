@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq

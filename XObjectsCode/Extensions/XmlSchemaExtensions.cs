@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Schema;
+
 using Xml.Schema.Linq.CodeGen;
 
 namespace XObjects

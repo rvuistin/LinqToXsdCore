@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+
 using Xml.Schema.Linq.Extensions;
 
 namespace Xml.Schema.Linq
@@ -17,7 +17,6 @@ namespace Xml.Schema.Linq
             return x.Schema.ToString() == y.Schema.ToString();
         }
 
-        [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
         public int GetHashCode(Namespace obj)
         {
             var schemaUriStr = obj.Schema?.ToString();

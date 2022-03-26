@@ -5,7 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 using Microsoft.CSharp;
+
 using Xml.Schema.Linq.CodeGen;
 
 namespace Xml.Schema.Linq.Extensions
