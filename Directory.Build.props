@@ -19,7 +19,7 @@
     <PackageLicense>https://licenses.nuget.org/MS-PL</PackageLicense>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageTags>XSD, XML, Linq, LinqToXsd</PackageTags>
-    <PackageOutputPath>$(MSBuildProjectDirectory)\nupkg</PackageOutputPath>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)nupkg</PackageOutputPath>
   </PropertyGroup>
   
   <!-- Disable XML comment warnings -->
