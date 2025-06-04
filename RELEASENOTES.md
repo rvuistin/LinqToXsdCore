@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.9
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.9
+* https://www.nuget.org/packages/XObjectsCore/3.4.9
+  * Fixes issue with new code generation facility from 3.4.8; see [#76](https://github.com/mamift/LinqToXsdCore/pull/76).
+
 ## Version 3.4.8
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.8
