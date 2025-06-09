@@ -677,7 +677,7 @@ namespace Xml.Schema.Linq.CodeGen
                             parentGroupInfo = currentGroupingInfo; //Assign parent before creating child groupInfo
                             currentGroupBase = particle as XmlSchemaGroupBase;
                             Debug.Assert(currentGroupBase != null);
-                            currentGroupingInfo = new GroupingInfo((ContentModelType) ((int) particleType),
+                            currentGroupingInfo = new GroupingInfo(parentGroupInfo, (ContentModelType) ((int) particleType),
                                 GetOccurence(currentGroupBase));
 
                             //Add to parent
@@ -765,8 +765,8 @@ namespace Xml.Schema.Linq.CodeGen
         private void SetPropertyFlags(ClrPropertyInfo propertyInfo, GroupingInfo currentGroupingInfo,
             XmlSchemaType propertyType)
         {
-            propertyInfo.CanBeAbsent |= currentGroupingInfo.ContentModelType == ContentModelType.Choice ||
-                                        currentGroupingInfo.IsOptional;
+            // all properties types in a choice are optional
+            propertyInfo.CanBeAbsent |= currentGroupingInfo.IsOptional || currentGroupingInfo.InChoice;
             propertyInfo.VerifyRequired = configSettings.VerifyRequired;
 
             if (currentGroupingInfo.IsRepeating)
