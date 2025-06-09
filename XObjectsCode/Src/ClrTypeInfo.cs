@@ -473,8 +473,9 @@ namespace Xml.Schema.Linq.CodeGen
         ContentModelType contentModelType;
         GroupingFlags groupingFlags;
 
-        public GroupingInfo(ContentModelType cmType, Occurs occursInSchema)
+        public GroupingInfo(GroupingInfo parentGroupInfo, ContentModelType cmType, Occurs occursInSchema)
         {
+            this.ParentGroupInfo = parentGroupInfo;
             this.contentModelType = cmType;
             this.occursInSchema = occursInSchema;
             this.contentType = ContentType.Grouping;
@@ -483,6 +484,8 @@ namespace Xml.Schema.Linq.CodeGen
                 groupingFlags |= GroupingFlags.Repeating;
             }
         }
+
+        public GroupingInfo ParentGroupInfo { get; }
 
         public bool IsRepeating
         {
@@ -579,6 +582,29 @@ namespace Xml.Schema.Linq.CodeGen
         {
             get { return contentModelType; }
         }
+
+        /// <summary>
+        /// Retrieves the current grouping information and all its ancestor groupings in hierarchical order.
+        /// </summary>
+        /// <remarks>The method returns the current instance first, followed by its parent and all
+        /// higher-level ancestors. The enumeration stops when no further parent group information is
+        /// available.</remarks>
+        /// <returns>An <see cref="IEnumerable{GroupingInfo}"/> containing the current grouping information and its ancestors.
+        /// The sequence is ordered from the current instance to the topmost ancestor.</returns>
+        public IEnumerable<GroupingInfo> GetSelfAndAncestors()
+        {
+            yield return this;
+            var parent = this.ParentGroupInfo;
+            while(parent != null)
+            {
+                yield return parent;
+                parent = parent.ParentGroupInfo;
+            }
+        }
+        /// <summary>
+        /// Gets a value indicating whether this grouping is or is part of a choice content model.
+        /// </summary>
+        public bool InChoice => this.GetSelfAndAncestors().Any(info => info.ContentModelType == ContentModelType.Choice);
 
         public override string ToString() => $"{this.contentModelType} {base.ToString()}";
     }
