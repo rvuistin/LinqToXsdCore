@@ -1,5 +1,11 @@
 # LinqToXsdCore Release Notes
 
+## Version 3.4.10
+Nuget packages:
+* https://www.nuget.org/packages/LinqToXsdCore/3.4.10
+* https://www.nuget.org/packages/XObjectsCore/3.4.10
+  * All types in a choice should be considered as optional: [#77](https://github.com/mamift/LinqToXsdCore/pull/77).
+
 ## Version 3.4.9
 Nuget packages:
 * https://www.nuget.org/packages/LinqToXsdCore/3.4.9
