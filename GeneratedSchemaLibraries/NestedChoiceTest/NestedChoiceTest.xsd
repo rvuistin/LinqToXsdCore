@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+    targetNamespace="http://linqtoxsd.schemas.org/test/nested-choice-types.xsd"
+    xmlns="http://linqtoxsd.schemas.org/test/nested-choice-types.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+>
+    <xs:complexType name="NestedChoiceType">
+        <xs:sequence>
+            <xs:element name="Prop1" type="xs:decimal" />               <!-- OK: decimal  Prop1 -->
+            <xs:element name="Prop2" type="xs:decimal" minOccurs="0" /> <!-- OK: decimal? Prop2 -->
+            <xs:choice>
+                <xs:element name="Choice1Prop" type="xs:decimal" />     <!-- OK: decimal? Choice2Prop2 -->
+                <xs:sequence>
+                    <xs:element name="Choice2Prop1" type="xs:decimal" /> 				        <!-- ERROR: expected: decimal? Choice2Prop1, actual decimal Choice2Prop1 -->
+                    <xs:element name="Choice2Prop2" type="xs:decimal" minOccurs="0" />  <!-- OK: decimal? Choice2Prop2-->
+                </xs:sequence>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

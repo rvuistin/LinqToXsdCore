@@ -71,6 +71,7 @@
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzML\mzML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\mzQuantML\mzQuantML.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\NameMangled\NameMangled.csproj" />
+    <ProjectReference Include="..\GeneratedSchemaLibraries\NestedChoiceTest\NestedChoiceTest.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\NHS CDS\NHS CDS.csproj" />
     <ProjectReference Include="..\GeneratedSchemaLibraries\OcmContracts\OcmContracts.csproj" />
     <!--<ProjectReference Include="..\GeneratedSchemaLibraries\NIEM\NIEM.csproj" />-->
