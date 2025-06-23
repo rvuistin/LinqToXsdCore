@@ -413,7 +413,7 @@ namespace Xml.Schema.Linq.CodeGen
             enumTypeDecl.TypeAttributes = TypeAttributes.Sealed | typeVisibility;
             foreach (var facet in typeInfo.InnerType.GetEnumFacets())
             {
-                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet));
+                enumTypeDecl.Members.Add(new CodeMemberField(typeName, facet.Member));
             }
 
             if (clrTypeInfo != null)

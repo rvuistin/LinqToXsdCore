@@ -151,7 +151,8 @@ namespace Xml.Schema.Linq
                                 nameTable = new NameTable();
                             }
                             var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
-                            enumerations.Add(value);
+                            var enumFacet = new EnumFacet(value.ToString());
+                            enumerations.Add(enumFacet.ToString());
                         }
                         else if (facet is XmlSchemaPatternFacet)
                         {

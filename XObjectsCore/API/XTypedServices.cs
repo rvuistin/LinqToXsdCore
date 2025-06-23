@@ -379,6 +379,17 @@ namespace Xml.Schema.Linq
             }
         }
 
+        public static string ParseValue(XElement element, XmlSchemaDatatype datatype, Xml.Schema.Linq.SimpleTypeValidator typeDef)
+        {
+            if (element == null)
+            {
+                return null;
+            }
+
+            var strValue  = ParseValue<string>(element.Value, element, datatype);
+            var enumFacet = typeDef.RestrictionFacets.GetEnumFacet(strValue);
+            return enumFacet != null ? enumFacet.Member : strValue;
+        }
         public static T ParseValue<T>(XElement element, XmlSchemaDatatype datatype)
         {
             if (element == null)
@@ -399,6 +410,17 @@ namespace Xml.Schema.Linq
             return ParseValue<T>(attribute.Value, attribute.Parent, datatype);
         }
 
+        public static string ParseValue(XAttribute attribute, XmlSchemaDatatype datatype, Xml.Schema.Linq.SimpleTypeValidator typeDef)
+        {
+            if (attribute == null)
+            {
+                return null;
+            }
+
+            var strValue  = ParseValue<string>(attribute.Value, attribute.Parent, datatype);
+            var enumFacet = typeDef.RestrictionFacets.GetEnumFacet(strValue);
+            return enumFacet != null ? enumFacet.Member : strValue;
+        }
         // Kept for backward compatibility with code generated in previous versions.
         // Current generator does not use this method anymore, as attributes with default properties
         // have `if (attr == null) return defaultValue` directly in getter to workaround enum parsing.

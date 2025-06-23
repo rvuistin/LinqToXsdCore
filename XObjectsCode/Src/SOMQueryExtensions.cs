@@ -143,7 +143,7 @@ namespace Xml.Schema.Linq.CodeGen
                     if (isEnum)
                     {
                         var facets = facetObjects.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value);
-                        isEnum = facets.All(facet => CodeDomHelper.CodeProvider.IsValidIdentifier(facet));
+                        isEnum = facets.All(facet => !string.IsNullOrWhiteSpace(facet));
                     }
                     return isEnum;
                 case XmlSchemaDatatypeVariety.List:
@@ -156,21 +156,25 @@ namespace Xml.Schema.Linq.CodeGen
             }
         }
 
-        public static IEnumerable<string> GetEnumFacets(this XmlSchemaType type)
+        public static IEnumerable<EnumFacet> GetEnumFacets(this XmlSchemaType type)
         {
             return type is XmlSchemaSimpleType simpleType
                 ? simpleType.GetEnumFacets()
-                : Enumerable.Empty<string>();
+                : Enumerable.Empty<EnumFacet>();
         }
-        public static IEnumerable<string> GetEnumFacets(this XmlSchemaSimpleType simpleType)
+        public static IEnumerable<EnumFacet> GetEnumFacets(this XmlSchemaSimpleType simpleType)
         {
             if (simpleType.Content is XmlSchemaSimpleTypeRestriction content)
             {
-                return content.Facets.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value).Cast<string>();
+                return content.Facets
+                    .Cast<XmlSchemaEnumerationFacet>()
+                    .Select(facet => facet.Value)
+                    .Distinct()
+                    .Select(facet => new EnumFacet(facet));
             }
             else
             {
-                return Enumerable.Empty<string>();
+                return Enumerable.Empty<EnumFacet>();
             }
         }
 

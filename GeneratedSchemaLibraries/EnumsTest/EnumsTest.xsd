@@ -5,12 +5,17 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified"
 >
-
   <xs:element name="Element1" type="GlobalEnumElementType" />
   <xs:element name="Element2" type="GlobalEnumAttributeType" />
   <xs:element name="Element3" type="NestedEnumElementType" />
   <xs:element name="Element4" type="NestedEnumAttributeType" />
   <xs:element name="Element5" type="NestedDerivedEnumAttributeType" />
+
+  <xs:simpleType name="EmptyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value=""/>
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:simpleType name="LanguageCodeEnum">
     <xs:restriction base="xs:NMTOKEN">
@@ -18,10 +23,19 @@
       <xs:enumeration value="fr"/>
     </xs:restriction>
   </xs:simpleType>
+  
+  <xs:simpleType name="InvalidCharEnum">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="en-fr"/>
+      <xs:enumeration value="fr-de-it"/>
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:complexType name="GlobalEnumElementType">
     <xs:sequence>
       <xs:element name="Language" type="LanguageCodeEnum" />
+      <xs:element name="Invalid" type="InvalidCharEnum" />
+      <xs:element name="Empty" type="EmptyType" />
     </xs:sequence>
   </xs:complexType>
 
@@ -29,6 +43,7 @@
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:attribute name="language" type="LanguageCodeEnum"/>
+        <xs:attribute name="invalid" type="InvalidCharEnum"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
@@ -40,6 +55,14 @@
           <xs:restriction base="xs:NMTOKEN" >
             <xs:enumeration value="en"/>
             <xs:enumeration value="fr"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Invalid">
+        <xs:simpleType>
+          <xs:restriction base="xs:NMTOKEN" >
+            <xs:enumeration value="en-fr"/>
+            <xs:enumeration value="fr-de-it"/>
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
@@ -55,6 +78,14 @@
         </xs:restriction>
       </xs:simpleType>
     </xs:attribute>
+    <xs:attribute name="invalid">
+      <xs:simpleType>
+        <xs:restriction base="xs:NMTOKEN" >
+          <xs:enumeration value="en-fr"/>
+          <xs:enumeration value="fr-de-it"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="NestedDerivedEnumAttributeType" >
@@ -65,6 +96,15 @@
             <xs:restriction base="xs:NMTOKEN" >
               <xs:enumeration value="de"/>
               <xs:enumeration value="it"/>
+              <xs:enumeration value="rm"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="additionalInvalid">
+          <xs:simpleType>
+            <xs:restriction base="xs:NMTOKEN" >
+              <xs:enumeration value="de"/>
+              <xs:enumeration value="it-rm"/>
             </xs:restriction>
           </xs:simpleType>
         </xs:attribute>

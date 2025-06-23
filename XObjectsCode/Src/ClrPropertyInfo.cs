@@ -551,7 +551,7 @@ namespace Xml.Schema.Linq.CodeGen
                     break;
 
                 case SchemaOrigin.Attribute:
-                    validation = false;
+                    validation = this.IsEnum;
                     setMethodName += "Attribute";
                     break;
 
@@ -593,13 +593,14 @@ namespace Xml.Schema.Linq.CodeGen
                 if (xNameParm)
                 {
                     var setValue = CodeDomHelper.SetValue();
+                    // this.SetElementWithValidation(<PropertyName>XName, <valueExpr>, "<PropertyName>", global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition);
                     setWithValidation = CodeDomHelper.CreateMethodCall(
-                        CodeDomHelper.This(),
-                        setMethodName + "WithValidation",
-                        xNameExpression,
+                        CodeDomHelper.This(),                       // this
+                        setMethodName + "WithValidation",           // SetElementWithValidation
+                        xNameExpression,                            // <PropertyName>XName
                         valueExpr,
-                        new CodePrimitiveExpression(PropertyName),
-                        GetSimpleTypeClassExpression());
+                        new CodePrimitiveExpression(PropertyName),  // "<PropertyName>"
+                        GetSimpleTypeClassExpression());            // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
                 }
                 else
                 {
@@ -853,6 +854,7 @@ namespace Xml.Schema.Linq.CodeGen
                     }
                     else
                     {
+                        // XTypedServices.ParseValue<string>
                         parseMethodName = Constants.ParseValue;
                         if (IsEnum) {
                             if (TypeReference.SchemaObject is XmlSchemaSimpleType simpleSchemaType) {
@@ -861,17 +863,26 @@ namespace Xml.Schema.Linq.CodeGen
                         }
                     }
 
-                    returnExp = CodeDomHelper.CreateGenericMethodCall(
-                        CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
-                        parseMethodName,
-                        parseType,
-                        returnValueExp,
-                        simpleTypeExpression);
-
                     if (IsEnum)
                     {
+                        // XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition)
+                        returnExp = CodeDomHelper.CreateMethodCall(
+                             CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),    // XTypedServices
+                             parseMethodName,                                                   // ParseValue
+                             returnValueExp,                                                    // x
+                             simpleTypeExpression,                                              // XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype
+                             GetSimpleTypeClassExpression());                                   // global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition
                         // (EnumType) Enum.Parse(typeof(EnumType), returnExp)
                         returnExp = CodeDomHelper.CreateParseEnumCall(this.TypeReference.ClrFullTypeName, returnExp);
+                    }
+                    else
+                    {
+                        returnExp = CodeDomHelper.CreateGenericMethodCall(
+                            CodeDomHelper.CreateTypeReferenceExp(Constants.XTypedServices),
+                            parseMethodName,
+                            parseType,
+                            returnValueExp,
+                            simpleTypeExpression);
                     }
                 }
             }

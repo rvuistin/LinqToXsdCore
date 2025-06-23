@@ -165,10 +165,11 @@ namespace Xml.Schema.Linq.CodeGen
                 CodeTypeDeclaration decl = null;
                 if (stInfo != null)
                 {
+                    if (stInfo is EnumSimpleTypeInfo && EnumAlreadyExistsInParent(stInfo.clrtypeName, parentTypeDecl)) continue;
+
                     decl = TypeBuilder.CreateSimpleType(stInfo, nameMappings, settings);
-                    decl.TypeAttributes =
-                        System.Reflection.TypeAttributes
-                              .NestedPrivate; //Anonymous simple types are private within the scope of the parent class
+                    //Anonymous simple types are private within the scope of the parent class
+                    decl.TypeAttributes = TypeAttributes.NestedPrivate;
                 }
                 else
                 {
@@ -210,8 +211,14 @@ namespace Xml.Schema.Linq.CodeGen
         private void CreateNestedEnumType(ClrTypeReference typeRef)
         {
             if (typeRef == null) throw new ArgumentNullException(nameof(typeRef));
+            var parentDecl = typeBuilder.TypeDeclaration;
+            if (EnumAlreadyExistsInParent(typeRef.Name, parentDecl))
+            {
+                //If the enum type is already defined in the parent type, do not create it again
+                return;
+            }
 
-            var innerType = typeRef.SchemaObject as XmlSchemaType;
+            var innerType = typeRef.SchemaObject as XmlSchemaSimpleType;
             Debug.Assert(innerType != null);
             var visibilitySetting = this.settings.NamespaceTypesVisibilityMap.ValueForKey(typeRef.Namespace);
             var enumTypeDecl = new CodeTypeDeclaration(typeRef.Name) {
@@ -219,14 +226,17 @@ namespace Xml.Schema.Linq.CodeGen
                 TypeAttributes = visibilitySetting.ToTypeAttribute()
             };
             foreach (var facet in innerType.GetEnumFacets()) {
-                enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet));
+                enumTypeDecl.Members.Add(new CodeMemberField(typeRef.Name, facet.Member));
             }
 
             enumTypeDecl.UserData[nameof(ClrTypeReference)] = typeRef;
 
-            // if (!EqualEnumTypeDeclarationExists(enumTypeDecl)) {
-                typeBuilder.TypeDeclaration.Members.Add(enumTypeDecl);
-            // }
+            //Create enum validator type
+            var enumTypeInfo = new EnumSimpleTypeInfo(innerType) { clrtypeName = typeRef.Name, clrtypeNs = string.Empty };
+            var enumValidatorDecl = TypeBuilder.CreateSimpleType(enumTypeInfo, nameMappings, settings);
+
+            parentDecl.Members.Add(enumTypeDecl);
+            parentDecl.Members.Add(enumValidatorDecl);
         }
 
         private IEnumerable<CodeTypeDeclaration> GetAllEnumsDefinedAlready()
@@ -235,6 +245,15 @@ namespace Xml.Schema.Linq.CodeGen
             var enumsInOtherTypesUnderNamespace = codeNamespace.NamespaceScopedEnumDeclarations();
             var enumsInCurrentType = typeBuilder.TypeDeclaration.Members.OfType<CodeTypeDeclaration>().Where(c => c.IsEnum);
             return enumsUnderNamespace.Union(enumsInCurrentType).Union(enumsInOtherTypesUnderNamespace);
+        }
+
+        private static bool EnumAlreadyExistsInParent(string clrEnumTypeName, CodeTypeDeclaration parent)
+        {
+            return parent.Members
+                .OfType<CodeTypeDeclaration>()
+                .Where(m => m.IsEnum)
+                .Select(m => m.Name)
+                .Contains(clrEnumTypeName);
         }
 
         private bool EqualEnumTypeDeclarationExists(CodeTypeDeclaration ctd)
