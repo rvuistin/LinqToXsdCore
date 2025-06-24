@@ -138,14 +138,14 @@ namespace Xml.Schema.Linq.CodeGen
             switch (type.Datatype.Variety)
             {
                 case XmlSchemaDatatypeVariety.Atomic:
-                    var facetObjects = (type.Content is XmlSchemaSimpleTypeRestriction content ? content.Facets.Cast<object>() : Enumerable.Empty<object>()).ToList();
-                    var isEnum = facetObjects.Any() && facetObjects.All(facet => facet is XmlSchemaEnumerationFacet);
-                    if (isEnum)
+                    // Accept only simple restriction types with valid type code and non-empty enumeration facets
+                    if (type.Content is XmlSchemaSimpleTypeRestriction restriction && restriction.Facets.Count > 0 && IsValidEnumTypeCode(type))
                     {
-                        var facets = facetObjects.Cast<XmlSchemaEnumerationFacet>().Select(facet => facet.Value);
-                        isEnum = facets.All(facet => !string.IsNullOrWhiteSpace(facet));
+                        var facets = restriction.Facets.OfType<XmlSchemaEnumerationFacet>().ToList();
+                        var isEnum = facets.Count == restriction.Facets.Count && facets.All(facet => !string.IsNullOrWhiteSpace(facet.Value));
+                        return isEnum;
                     }
-                    return isEnum;
+                    return false;
                 case XmlSchemaDatatypeVariety.List:
                     return type.GetListItemType().IsEnum();
                 case XmlSchemaDatatypeVariety.Union:
@@ -153,6 +153,21 @@ namespace Xml.Schema.Linq.CodeGen
 
                 default:
                     throw new InvalidOperationException("Unknown type variety");
+            }
+            
+            static bool IsValidEnumTypeCode(XmlSchemaSimpleType type)
+            {
+                return type.Datatype.TypeCode
+                    is XmlTypeCode.String
+                    or XmlTypeCode.NormalizedString
+                    or XmlTypeCode.Token
+                    or XmlTypeCode.NmToken
+                    or XmlTypeCode.Name
+                    or XmlTypeCode.Language
+                    or XmlTypeCode.NCName
+                    or XmlTypeCode.Id
+                    or XmlTypeCode.Idref
+                    or XmlTypeCode.Entity;
             }
         }
 

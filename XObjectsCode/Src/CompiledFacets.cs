@@ -97,6 +97,7 @@ namespace Xml.Schema.Linq
 
         public void compileFacets(XmlSchemaSimpleType simpleType)
         {
+            var isEnum = simpleType.IsEnum();
             XmlSchemaSimpleType type = simpleType;
             XmlSchemaSimpleType enumSimpleType = null; //simpletype that has most restricted enums.
             flags = 0;
@@ -151,8 +152,15 @@ namespace Xml.Schema.Linq
                                 nameTable = new NameTable();
                             }
                             var value = type.BaseXmlSchemaType.Datatype.ParseValue(s: facet.Value, nameTable: nameTable, nsmgr: null);
-                            var enumFacet = new EnumFacet(value.ToString());
-                            enumerations.Add(enumFacet.ToString());
+                            if (isEnum)
+                            {
+                                var enumFacet = new EnumFacet(value.ToString());
+                                enumerations.Add(enumFacet.ToString());
+                            }
+                            else
+                            {
+                                enumerations.Add(value);
+                            }
                         }
                         else if (facet is XmlSchemaPatternFacet)
                         {
