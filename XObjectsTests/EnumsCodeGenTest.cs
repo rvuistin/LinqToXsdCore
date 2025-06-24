@@ -109,12 +109,15 @@ namespace Xml.Schema.Linq.Tests
             var element1 = new GlobalEnumElementType
             {
                 Language = LanguageCodeEnum.fr,
-                Invalid  = InvalidCharEnum.en_fr
+                Invalid  = InvalidCharEnum.en_fr,
+                Empty    = string.Empty,
             };
             Assert.AreEqual(LanguageCodeEnum.fr, element1.Language);
             Assert.AreEqual(InvalidCharEnum.en_fr, element1.Invalid);
+            Assert.AreEqual(string.Empty, element1.Empty);
+            Assert.AreEqual(0.0m, element1.Version);
             Assert.AreEqual("fr",    ((XElement)element1.Untyped.FirstNode).Value);
-            Assert.AreEqual("en-fr", ((XElement)element1.Untyped.LastNode).Value);
+            Assert.AreEqual("en-fr", ((XElement)element1.Untyped.FirstNode.NextNode).Value);
 
             var element2 = new GlobalEnumAttributeType
             {

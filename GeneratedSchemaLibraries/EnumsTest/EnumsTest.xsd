@@ -11,6 +11,12 @@
   <xs:element name="Element4" type="NestedEnumAttributeType" />
   <xs:element name="Element5" type="NestedDerivedEnumAttributeType" />
 
+  <xs:simpleType name="VersionType">
+    <xs:restriction base="xs:decimal">
+      <xs:enumeration value="0.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="EmptyType">
     <xs:restriction base="xs:string">
       <xs:enumeration value=""/>
@@ -36,6 +42,7 @@
       <xs:element name="Language" type="LanguageCodeEnum" />
       <xs:element name="Invalid" type="InvalidCharEnum" />
       <xs:element name="Empty" type="EmptyType" />
+      <xs:element name="Version" type="VersionType" />
     </xs:sequence>
   </xs:complexType>
 

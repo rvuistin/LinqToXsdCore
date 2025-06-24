@@ -21,6 +21,16 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
     using Xml.Schema.Linq;
     
     
+    public sealed class VersionType {
+        
+        private VersionType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Decimal), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                        0.0m}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+    }
+    
     public sealed class EmptyType {
         
         private EmptyType() {
@@ -69,7 +79,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Language, Invalid, Empty)
+    /// Regular expression: (Language, Invalid, Empty, Version)
     /// </para>
     /// </summary>
     public partial class GlobalEnumElementType : XTypedElement, IXMetaData {
@@ -82,7 +92,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public GlobalEnumElementType() {
@@ -97,7 +107,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum Language {
@@ -119,7 +129,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum Invalid {
@@ -141,7 +151,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual string Empty {
@@ -154,11 +164,33 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VersionXName = System.Xml.Linq.XName.Get("Version", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual decimal Version {
+            get {
+                XElement x = this.GetElement(VersionXName);
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Decimal).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(VersionXName, value, "Version", global::LinqToXsd.Schemas.Test.EnumsTypes.VersionType.TypeDefinition);
+            }
+        }
+        
         private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         static GlobalEnumElementType() {
             BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(InvalidXName), new NamedContentModelEntity(EmptyXName));
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(InvalidXName), new NamedContentModelEntity(EmptyXName), new NamedContentModelEntity(VersionXName));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -168,6 +200,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             localElementDictionary.Add(LanguageXName, typeof(string));
             localElementDictionary.Add(InvalidXName, typeof(string));
             localElementDictionary.Add(EmptyXName, typeof(string));
+            localElementDictionary.Add(VersionXName, typeof(decimal));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -791,7 +824,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum Language {
@@ -808,7 +841,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum Invalid {
@@ -825,7 +858,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language, Invalid, Empty)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual string Empty {
@@ -834,6 +867,23 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
             set {
                 this.ContentField.Empty = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual decimal Version {
+            get {
+                return this.ContentField.Version;
+            }
+            set {
+                this.ContentField.Version = value;
             }
         }
         
