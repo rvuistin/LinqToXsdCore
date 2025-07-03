@@ -1,13 +1,13 @@
 //Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
-using System.Collections;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 
 namespace Xml.Schema.Linq
 {
@@ -26,6 +26,7 @@ namespace Xml.Schema.Linq
         internal int TotalDigits;
         internal int FractionDigits;
         internal RestrictionFlags Flags = 0;
+        internal EnumFacetMapping[] EnumFacets;
 
         private bool hasValueFacets;
 
@@ -59,10 +60,12 @@ namespace Xml.Schema.Linq
             hasLexicalFacets = false;
             if ((flags & RestrictionFlags.Enumeration) != 0)
             {
+                this.EnumFacets = enumeration.Select(EnumFacetMapping.Parse).ToArray();
+
                 this.Enumeration = new ArrayList();
-                foreach (object o in enumeration)
+                foreach (var facet in this.EnumFacets)
                 {
-                    this.Enumeration.Add(o);
+                    this.Enumeration.Add(facet.Value);
                 }
 
                 hasValueFacets = true;
@@ -153,6 +156,19 @@ namespace Xml.Schema.Linq
             {
                 Patterns.Add(new Regex(str));
             }
+        }
+
+        internal EnumFacetMapping GetEnumFacet(string value)
+        {
+            if (EnumFacets == null || value == null) return null;
+            foreach (EnumFacetMapping enumFacet in EnumFacets)
+            {
+                if (enumFacet.Value == value || enumFacet.Member == value)
+                {
+                    return enumFacet;
+                }
+            }
+            return null;
         }
     }
 
@@ -268,6 +284,20 @@ namespace Xml.Schema.Linq
                 {
                     e = TryParseString(value, nameTable, resolver, out var parsedString)
                         ?? facetsChecker.CheckLexicalFacets(ref parsedString, value, nameTable, resolver, this);
+                }
+
+                var enumFacets = RestrictionFacets?.EnumFacets;
+                if (enumFacets != null)
+                {
+                    var enumFacet = RestrictionFacets.GetEnumFacet(value as string);
+                    if (enumFacet != null)
+                    {
+                        value = enumFacet.Value;
+                    }
+                    else
+                    {
+                        return new LinqToXsdFacetException(RestrictionFlags.Enumeration, enumFacets, value);
+                    }
                 }
 
                 e ??= facetsChecker.CheckValueFacets(value, this);

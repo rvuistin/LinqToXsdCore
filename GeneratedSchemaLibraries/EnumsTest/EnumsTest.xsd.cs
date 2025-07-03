@@ -21,6 +21,26 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
     using Xml.Schema.Linq;
     
     
+    public sealed class VersionType {
+        
+        private VersionType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Decimal), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                        0.0m}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+    }
+    
+    public sealed class EmptyType {
+        
+        private EmptyType() {
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                        ""}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Preserve));
+    }
+    
     public enum LanguageCodeEnum {
         
         en,
@@ -30,61 +50,70 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
     
     public sealed class LanguageCodeEnumValidator {
         
+        private LanguageCodeEnumValidator() {
+        }
+        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                         "en",
                         "fr"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+    }
+    
+    public enum InvalidCharEnum {
         
-        private LanguageCodeEnumValidator() {
+        en_fr,
+        
+        fr_de_it,
+    }
+    
+    public sealed class InvalidCharEnumValidator {
+        
+        private InvalidCharEnumValidator() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                        "en-fr:en_fr",
+                        "fr-de-it:fr_de_it"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
     }
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Language)
+    /// Regular expression: (Language, Invalid, Empty, Version)
     /// </para>
     /// </summary>
     public partial class GlobalEnumElementType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator GlobalEnumElementType(XElement xe) { return XTypedServices.ToXTypedElement<GlobalEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static GlobalEnumElementType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GlobalEnumElementType>(this);
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Language)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public GlobalEnumElementType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language)
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum Language {
             get {
                 XElement x = this.GetElement(LanguageXName);
-                return ((LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition))));
             }
             set {
                 this.SetElementWithValidation(LanguageXName, value.ToString(), "Language", global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition);
@@ -92,10 +121,100 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InvalidXName = System.Xml.Linq.XName.Get("Invalid", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum Invalid {
+            get {
+                XElement x = this.GetElement(InvalidXName);
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetElementWithValidation(InvalidXName, value.ToString(), "Invalid", global::LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnumValidator.TypeDefinition);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName EmptyXName = System.Xml.Linq.XName.Get("Empty", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual string Empty {
+            get {
+                XElement x = this.GetElement(EmptyXName);
+                return XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(EmptyXName, value, "Empty", global::LinqToXsd.Schemas.Test.EnumsTypes.EmptyType.TypeDefinition);
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName VersionXName = System.Xml.Linq.XName.Get("Version", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual decimal Version {
+            get {
+                XElement x = this.GetElement(VersionXName);
+                return XTypedServices.ParseValue<decimal>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.Decimal).Datatype);
+            }
+            set {
+                this.SetElementWithValidation(VersionXName, value, "Version", global::LinqToXsd.Schemas.Test.EnumsTypes.VersionType.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        static GlobalEnumElementType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(InvalidXName), new NamedContentModelEntity(EmptyXName), new NamedContentModelEntity(VersionXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LanguageXName, typeof(string));
+            localElementDictionary.Add(InvalidXName, typeof(string));
+            localElementDictionary.Add(EmptyXName, typeof(string));
+            localElementDictionary.Add(VersionXName, typeof(decimal));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
                 return localElementDictionary;
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -118,36 +237,22 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GlobalEnumElementType>(this);
-        }
-        
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LanguageXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
-        }
     }
     
     public partial class GlobalEnumAttributeType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
 		public static explicit operator GlobalEnumAttributeType(XElement xe) { return XTypedServices.ToXTypedElement<GlobalEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<GlobalEnumAttributeType>(this);
+        }
         
         public GlobalEnumAttributeType() {
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName TypedValueXName = System.Xml.Linq.XName.Get("TypedValue", "");
         
         public virtual string TypedValue {
             get {
@@ -158,6 +263,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 this.SetValue(value, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.String).Datatype);
             }
         }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
         
         /// <summary>
         /// <para>
@@ -170,11 +279,49 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 if ((x == null)) {
                     return null;
                 }
-                return ((LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(languageXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                if (value == null) {
+                    this.SetAttribute(languageXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(languageXName, value.ToString(), "language", global::LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnumValidator.TypeDefinition);
+                }
             }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName invalidXName = System.Xml.Linq.XName.Get("invalid", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum? invalid {
+            get {
+                XAttribute x = this.Attribute(invalidXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, global::LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnumValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(invalidXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(invalidXName, value.ToString(), "invalid", global::LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnumValidator.TypeDefinition);
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("GlobalEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -197,66 +344,122 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<GlobalEnumAttributeType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
     }
     
     /// <summary>
     /// <para>
-    /// Regular expression: (Language)
+    /// Regular expression: (Language, Invalid)
     /// </para>
     /// </summary>
     public partial class NestedEnumElementType : XTypedElement, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static ContentModelEntity contentModel;
-        
 		public static explicit operator NestedEnumElementType(XElement xe) { return XTypedServices.ToXTypedElement<NestedEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
-        static NestedEnumElementType() {
-            BuildElementDictionary();
-            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName));
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<NestedEnumElementType>(this);
         }
         
         /// <summary>
         /// <para>
-        /// Regular expression: (Language)
+        /// Regular expression: (Language, Invalid)
         /// </para>
         /// </summary>
         public NestedEnumElementType() {
         }
+        
+        public enum LanguageEnum {
+            
+            en,
+            
+            fr,
+        }
+        
+        public sealed class LanguageEnumValidator {
+            
+            private LanguageEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "en",
+                            "fr"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName LanguageXName = System.Xml.Linq.XName.Get("Language", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         /// <summary>
         /// <para>
         /// Occurrence: required
         /// </para>
         /// <para>
-        /// Regular expression: (Language)
+        /// Regular expression: (Language, Invalid)
         /// </para>
         /// </summary>
         public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum Language {
             get {
                 XElement x = this.GetElement(LanguageXName);
-                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, LanguageEnumValidator.TypeDefinition))));
             }
             set {
                 this.SetElementWithValidation(LanguageXName, value.ToString(), "Language", LanguageEnumValidator.TypeDefinition);
             }
+        }
+        
+        public enum InvalidEnum {
+            
+            en_fr,
+            
+            fr_de_it,
+        }
+        
+        public sealed class InvalidEnumValidator {
+            
+            private InvalidEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "en-fr:en_fr",
+                            "fr-de-it:fr_de_it"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName InvalidXName = System.Xml.Linq.XName.Get("Invalid", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid)
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.InvalidEnum Invalid {
+            get {
+                XElement x = this.GetElement(InvalidXName);
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.InvalidEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.InvalidEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, InvalidEnumValidator.TypeDefinition))));
+            }
+            set {
+                this.SetElementWithValidation(InvalidXName, value.ToString(), "Invalid", InvalidEnumValidator.TypeDefinition);
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        static NestedEnumElementType() {
+            BuildElementDictionary();
+            contentModel = new SequenceContentModelEntity(new NamedContentModelEntity(LanguageXName), new NamedContentModelEntity(InvalidXName));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static Dictionary<System.Xml.Linq.XName, System.Type> localElementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildElementDictionary() {
+            localElementDictionary.Add(LanguageXName, typeof(string));
+            localElementDictionary.Add(InvalidXName, typeof(string));
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -267,6 +470,13 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static ContentModelEntity contentModel;
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return contentModel;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
             get {
                 return xName;
@@ -286,17 +496,17 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class NestedEnumAttributeType : XTypedElement, IXMetaData {
+        
+		public static explicit operator NestedEnumAttributeType(XElement xe) { return XTypedServices.ToXTypedElement<NestedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
         
         public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<NestedEnumElementType>(this);
+            return XTypedServices.CloneXTypedElement<NestedEnumAttributeType>(this);
         }
         
-        private static void BuildElementDictionary() {
-            localElementDictionary.Add(LanguageXName, typeof(string));
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return contentModel;
+        public NestedEnumAttributeType() {
         }
         
         public enum LanguageEnum {
@@ -306,30 +516,20 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             fr,
         }
         
-        private class LanguageEnumValidator {
+        public sealed class LanguageEnumValidator {
+            
+            private LanguageEnumValidator() {
+            }
             
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]
             public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
                             "en",
                             "fr"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
-            
-            private LanguageEnumValidator() {
-            }
         }
-    }
-    
-    public partial class NestedEnumAttributeType : XTypedElement, IXMetaData {
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator NestedEnumAttributeType(XElement xe) { return XTypedServices.ToXTypedElement<NestedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public NestedEnumAttributeType() {
-        }
+        protected internal static readonly System.Xml.Linq.XName languageXName = System.Xml.Linq.XName.Get("language", "");
         
         /// <summary>
         /// <para>
@@ -342,11 +542,67 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 if ((x == null)) {
                     return null;
                 }
-                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, LanguageEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(languageXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                if (value == null) {
+                    this.SetAttribute(languageXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(languageXName, value.ToString(), "language", LanguageEnumValidator.TypeDefinition);
+                }
             }
+        }
+        
+        public enum InvalidEnum {
+            
+            en_fr,
+            
+            fr_de_it,
+        }
+        
+        public sealed class InvalidEnumValidator {
+            
+            private InvalidEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "en-fr:en_fr",
+                            "fr-de-it:fr_de_it"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName invalidXName = System.Xml.Linq.XName.Get("invalid", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.InvalidEnum? invalid {
+            get {
+                XAttribute x = this.Attribute(invalidXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.InvalidEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.InvalidEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, InvalidEnumValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(invalidXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(invalidXName, value.ToString(), "invalid", InvalidEnumValidator.TypeDefinition);
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -369,35 +625,43 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<NestedEnumAttributeType>(this);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-        
-        public enum LanguageEnum {
-            
-            en,
-            
-            fr,
-        }
     }
     
     public partial class NestedDerivedEnumAttributeType : global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType, IXMetaData {
         
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly System.Xml.Linq.XName additionalLanguageXName = System.Xml.Linq.XName.Get("additionalLanguage", "");
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedDerivedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
 		public static explicit operator NestedDerivedEnumAttributeType(XElement xe) { return XTypedServices.ToXTypedElement<NestedDerivedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
+        public override XTypedElement Clone() {
+            return XTypedServices.CloneXTypedElement<NestedDerivedEnumAttributeType>(this);
+        }
         
         public NestedDerivedEnumAttributeType() {
         }
+        
+        public enum AdditionalLanguageEnum {
+            
+            de,
+            
+            it,
+            
+            rm,
+        }
+        
+        public sealed class AdditionalLanguageEnumValidator {
+            
+            private AdditionalLanguageEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "de",
+                            "it",
+                            "rm"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName additionalLanguageXName = System.Xml.Linq.XName.Get("additionalLanguage", "");
         
         /// <summary>
         /// <para>
@@ -410,12 +674,64 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 if ((x == null)) {
                     return null;
                 }
-                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum), XTypedServices.ParseValue<string>(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype))));
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, AdditionalLanguageEnumValidator.TypeDefinition))));
             }
             set {
-                this.SetAttribute(additionalLanguageXName, value?.ToString(), XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                if (value == null) {
+                    this.SetAttribute(additionalLanguageXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(additionalLanguageXName, value.ToString(), "additionalLanguage", AdditionalLanguageEnumValidator.TypeDefinition);
+                }
             }
         }
+        
+        public enum AdditionalInvalidEnum {
+            
+            de,
+            
+            it_rm,
+        }
+        
+        public sealed class AdditionalInvalidEnumValidator {
+            
+            private AdditionalInvalidEnumValidator() {
+            }
+            
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            public static Xml.Schema.Linq.SimpleTypeValidator TypeDefinition = new Xml.Schema.Linq.AtomicSimpleTypeValidator(XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken), new Xml.Schema.Linq.RestrictionFacets(((Xml.Schema.Linq.RestrictionFlags)(16)), new object[] {
+                            "de",
+                            "it-rm:it_rm"}, 0, 0, null, null, 0, null, null, 0, null, 0, XmlSchemaWhiteSpace.Collapse));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal static readonly System.Xml.Linq.XName additionalInvalidXName = System.Xml.Linq.XName.Get("additionalInvalid", "");
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalInvalidEnum? additionalInvalid {
+            get {
+                XAttribute x = this.Attribute(additionalInvalidXName);
+                if ((x == null)) {
+                    return null;
+                }
+                return ((LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalInvalidEnum)(Enum.Parse(typeof(LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalInvalidEnum), XTypedServices.ParseValue(x, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype, AdditionalInvalidEnumValidator.TypeDefinition))));
+            }
+            set {
+                if (value == null) {
+                    this.SetAttribute(additionalInvalidXName, null, XmlSchemaType.GetBuiltInSimpleType(XmlTypeCode.NmToken).Datatype);
+                }
+                else {
+                    this.SetAttributeWithValidation(additionalInvalidXName, value.ToString(), "additionalInvalid", AdditionalInvalidEnumValidator.TypeDefinition);
+                }
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("NestedDerivedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         System.Xml.Linq.XName IXMetaData.SchemaName {
@@ -437,102 +753,9 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
-        
-        public override XTypedElement Clone() {
-            return XTypedServices.CloneXTypedElement<NestedDerivedEnumAttributeType>(this);
-        }
-        
-        public enum AdditionalLanguageEnum {
-            
-            de,
-            
-            it,
-        }
     }
     
     public partial class Element1 : XTypedElement, IXMetaData {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private GlobalEnumElementType ContentField;
-        
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element1", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator Element1(XElement xe) { return XTypedServices.ToXTypedElement<Element1, GlobalEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Element1() {
-            SetInnerType(new GlobalEnumElementType());
-        }
-        
-        public Element1(GlobalEnumElementType content) {
-            SetInnerType(content);
-        }
-        
-        public override XElement Untyped {
-            get {
-                return base.Untyped;
-            }
-            set {
-                base.Untyped = value;
-                this.ContentField.Untyped = value;
-            }
-        }
-        
-        public virtual GlobalEnumElementType Content {
-            get {
-                return ContentField;
-            }
-        }
-        
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (Language)
-        /// </para>
-        /// </summary>
-        public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum Language {
-            get {
-                return this.ContentField.Language;
-            }
-            set {
-                this.ContentField.Language = value;
-            }
-        }
-        
-        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
-            get {
-                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
-                return schemaMetaData.LocalElementsDictionary;
-            }
-        }
-        
-        XTypedElement IXMetaData.Content {
-            get {
-                return this.Content;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        System.Xml.Linq.XName IXMetaData.SchemaName {
-            get {
-                return xName;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        SchemaOrigin IXMetaData.TypeOrigin {
-            get {
-                return SchemaOrigin.Element;
-            }
-        }
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        ILinqToXsdTypeManager IXMetaData.TypeManager {
-            get {
-                return LinqToXsdTypeManager.Instance;
-            }
-        }
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -558,35 +781,17 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             return XTypedServices.Parse<Element1, GlobalEnumElementType>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator Element1(XElement xe) { return XTypedServices.ToXTypedElement<Element1, GlobalEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new Element1(((GlobalEnumElementType)(this.Content.Clone())));
         }
         
-        private void SetInnerType(GlobalEnumElementType ContentField) {
-            this.ContentField = ((GlobalEnumElementType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    public partial class Element2 : XTypedElement, IXMetaData {
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private GlobalEnumAttributeType ContentField;
+        private GlobalEnumElementType ContentField;
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element2", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator Element2(XElement xe) { return XTypedServices.ToXTypedElement<Element2, GlobalEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Element2() {
-            SetInnerType(new GlobalEnumAttributeType());
-        }
-        
-        public Element2(GlobalEnumAttributeType content) {
-            SetInnerType(content);
+        public Element1() {
+            SetInnerType(new GlobalEnumElementType());
         }
         
         public override XElement Untyped {
@@ -599,34 +804,90 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
-        public virtual GlobalEnumAttributeType Content {
+        public virtual GlobalEnumElementType Content {
             get {
                 return ContentField;
             }
         }
         
-        public virtual string TypedValue {
+        private void SetInnerType(GlobalEnumElementType ContentField) {
+            this.ContentField = ((GlobalEnumElementType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public Element1(GlobalEnumElementType content) {
+            SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum Language {
             get {
-                return this.ContentField.TypedValue;
+                return this.ContentField.Language;
             }
             set {
-                this.ContentField.TypedValue = value;
+                this.ContentField.Language = value;
             }
         }
         
         /// <summary>
         /// <para>
-        /// Occurrence: optional
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
         /// </para>
         /// </summary>
-        public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum? language {
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum Invalid {
             get {
-                return this.ContentField.language;
+                return this.ContentField.Invalid;
             }
             set {
-                this.ContentField.language = value;
+                this.ContentField.Invalid = value;
             }
         }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual string Empty {
+            get {
+                return this.ContentField.Empty;
+            }
+            set {
+                this.ContentField.Empty = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid, Empty, Version)
+        /// </para>
+        /// </summary>
+        public virtual decimal Version {
+            get {
+                return this.ContentField.Version;
+            }
+            set {
+                this.ContentField.Version = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element1", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -639,6 +900,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -661,6 +926,9 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Element2 : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -686,35 +954,17 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             return XTypedServices.Parse<Element2, GlobalEnumAttributeType>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator Element2(XElement xe) { return XTypedServices.ToXTypedElement<Element2, GlobalEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new Element2(((GlobalEnumAttributeType)(this.Content.Clone())));
         }
         
-        private void SetInnerType(GlobalEnumAttributeType ContentField) {
-            this.ContentField = ((GlobalEnumAttributeType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    public partial class Element3 : XTypedElement, IXMetaData {
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private NestedEnumElementType ContentField;
+        private GlobalEnumAttributeType ContentField;
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element3", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator Element3(XElement xe) { return XTypedServices.ToXTypedElement<Element3, NestedEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Element3() {
-            SetInnerType(new NestedEnumElementType());
-        }
-        
-        public Element3(NestedEnumElementType content) {
-            SetInnerType(content);
+        public Element2() {
+            SetInnerType(new GlobalEnumAttributeType());
         }
         
         public override XElement Untyped {
@@ -727,28 +977,59 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
-        public virtual NestedEnumElementType Content {
+        public virtual GlobalEnumAttributeType Content {
             get {
                 return ContentField;
             }
         }
         
-        /// <summary>
-        /// <para>
-        /// Occurrence: required
-        /// </para>
-        /// <para>
-        /// Regular expression: (Language)
-        /// </para>
-        /// </summary>
-        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum Language {
+        private void SetInnerType(GlobalEnumAttributeType ContentField) {
+            this.ContentField = ((GlobalEnumAttributeType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public Element2(GlobalEnumAttributeType content) {
+            SetInnerType(content);
+        }
+        
+        public virtual string TypedValue {
             get {
-                return this.ContentField.Language;
+                return this.ContentField.TypedValue;
             }
             set {
-                this.ContentField.Language = value;
+                this.ContentField.TypedValue = value;
             }
         }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.LanguageCodeEnum? language {
+            get {
+                return this.ContentField.language;
+            }
+            set {
+                this.ContentField.language = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.InvalidCharEnum? invalid {
+            get {
+                return this.ContentField.invalid;
+            }
+            set {
+                this.ContentField.invalid = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element2", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -761,6 +1042,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -783,6 +1068,9 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Element3 : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -808,35 +1096,17 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             return XTypedServices.Parse<Element3, NestedEnumElementType>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator Element3(XElement xe) { return XTypedServices.ToXTypedElement<Element3, NestedEnumElementType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new Element3(((NestedEnumElementType)(this.Content.Clone())));
         }
         
-        private void SetInnerType(NestedEnumElementType ContentField) {
-            this.ContentField = ((NestedEnumElementType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    public partial class Element4 : XTypedElement, IXMetaData {
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private NestedEnumAttributeType ContentField;
+        private NestedEnumElementType ContentField;
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element4", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator Element4(XElement xe) { return XTypedServices.ToXTypedElement<Element4, NestedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Element4() {
-            SetInnerType(new NestedEnumAttributeType());
-        }
-        
-        public Element4(NestedEnumAttributeType content) {
-            SetInnerType(content);
+        public Element3() {
+            SetInnerType(new NestedEnumElementType());
         }
         
         public override XElement Untyped {
@@ -849,25 +1119,56 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
-        public virtual NestedEnumAttributeType Content {
+        public virtual NestedEnumElementType Content {
             get {
                 return ContentField;
             }
         }
         
+        private void SetInnerType(NestedEnumElementType ContentField) {
+            this.ContentField = ((NestedEnumElementType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public Element3(NestedEnumElementType content) {
+            SetInnerType(content);
+        }
+        
         /// <summary>
         /// <para>
-        /// Occurrence: optional
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid)
         /// </para>
         /// </summary>
-        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum? language {
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.LanguageEnum Language {
             get {
-                return this.ContentField.language;
+                return this.ContentField.Language;
             }
             set {
-                this.ContentField.language = value;
+                this.ContentField.Language = value;
             }
         }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: required
+        /// </para>
+        /// <para>
+        /// Regular expression: (Language, Invalid)
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType.InvalidEnum Invalid {
+            get {
+                return this.ContentField.Invalid;
+            }
+            set {
+                this.ContentField.Invalid = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element3", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -880,6 +1181,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -902,6 +1207,9 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Element4 : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -927,35 +1235,17 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             return XTypedServices.Parse<Element4, NestedEnumAttributeType>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator Element4(XElement xe) { return XTypedServices.ToXTypedElement<Element4, NestedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new Element4(((NestedEnumAttributeType)(this.Content.Clone())));
         }
         
-        private void SetInnerType(NestedEnumAttributeType ContentField) {
-            this.ContentField = ((NestedEnumAttributeType)(XTypedServices.GetCloneIfRooted(ContentField)));
-            XTypedServices.SetName(this, this.ContentField);
-        }
-        
-        ContentModelEntity IXMetaData.GetContentModel() {
-            return ContentModelEntity.Default;
-        }
-    }
-    
-    public partial class Element5 : XTypedElement, IXMetaData {
-        
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private NestedDerivedEnumAttributeType ContentField;
+        private NestedEnumAttributeType ContentField;
         
-        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element5", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
-        
-		public static explicit operator Element5(XElement xe) { return XTypedServices.ToXTypedElement<Element5, NestedDerivedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
-        
-        public Element5() {
-            SetInnerType(new NestedDerivedEnumAttributeType());
-        }
-        
-        public Element5(NestedDerivedEnumAttributeType content) {
-            SetInnerType(content);
+        public Element4() {
+            SetInnerType(new NestedEnumAttributeType());
         }
         
         public override XElement Untyped {
@@ -968,9 +1258,32 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
-        public virtual NestedDerivedEnumAttributeType Content {
+        public virtual NestedEnumAttributeType Content {
             get {
                 return ContentField;
+            }
+        }
+        
+        private void SetInnerType(NestedEnumAttributeType ContentField) {
+            this.ContentField = ((NestedEnumAttributeType)(XTypedServices.GetCloneIfRooted(ContentField)));
+            XTypedServices.SetName(this, this.ContentField);
+        }
+        
+        public Element4(NestedEnumAttributeType content) {
+            SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum? language {
+            get {
+                return this.ContentField.language;
+            }
+            set {
+                this.ContentField.language = value;
             }
         }
         
@@ -979,14 +1292,16 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         /// Occurrence: optional
         /// </para>
         /// </summary>
-        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum? additionalLanguage {
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.InvalidEnum? invalid {
             get {
-                return this.ContentField.additionalLanguage;
+                return this.ContentField.invalid;
             }
             set {
-                this.ContentField.additionalLanguage = value;
+                this.ContentField.invalid = value;
             }
         }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element4", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
         
         Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
             get {
@@ -999,6 +1314,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             get {
                 return this.Content;
             }
+        }
+        
+        ContentModelEntity IXMetaData.GetContentModel() {
+            return ContentModelEntity.Default;
         }
         
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -1021,6 +1340,9 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
                 return LinqToXsdTypeManager.Instance;
             }
         }
+    }
+    
+    public partial class Element5 : XTypedElement, IXMetaData {
         
         public void Save(string xmlFile) {
             XTypedServices.Save(xmlFile, Untyped);
@@ -1046,8 +1368,33 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             return XTypedServices.Parse<Element5, NestedDerivedEnumAttributeType>(xml, LinqToXsdTypeManager.Instance);
         }
         
+		public static explicit operator Element5(XElement xe) { return XTypedServices.ToXTypedElement<Element5, NestedDerivedEnumAttributeType>(xe,LinqToXsdTypeManager.Instance as ILinqToXsdTypeManager); }
+        
         public override XTypedElement Clone() {
             return new Element5(((NestedDerivedEnumAttributeType)(this.Content.Clone())));
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private NestedDerivedEnumAttributeType ContentField;
+        
+        public Element5() {
+            SetInnerType(new NestedDerivedEnumAttributeType());
+        }
+        
+        public override XElement Untyped {
+            get {
+                return base.Untyped;
+            }
+            set {
+                base.Untyped = value;
+                this.ContentField.Untyped = value;
+            }
+        }
+        
+        public virtual NestedDerivedEnumAttributeType Content {
+            get {
+                return ContentField;
+            }
         }
         
         private void SetInnerType(NestedDerivedEnumAttributeType ContentField) {
@@ -1055,32 +1402,143 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             XTypedServices.SetName(this, this.ContentField);
         }
         
+        public Element5(NestedDerivedEnumAttributeType content) {
+            SetInnerType(content);
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalLanguageEnum? additionalLanguage {
+            get {
+                return this.ContentField.additionalLanguage;
+            }
+            set {
+                this.ContentField.additionalLanguage = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType.AdditionalInvalidEnum? additionalInvalid {
+            get {
+                return this.ContentField.additionalInvalid;
+            }
+            set {
+                this.ContentField.additionalInvalid = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.LanguageEnum? language {
+            get {
+                return this.ContentField.language;
+            }
+            set {
+                this.ContentField.language = value;
+            }
+        }
+        
+        /// <summary>
+        /// <para>
+        /// Occurrence: optional
+        /// </para>
+        /// </summary>
+        public virtual LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType.InvalidEnum? invalid {
+            get {
+                return this.ContentField.invalid;
+            }
+            set {
+                this.ContentField.invalid = value;
+            }
+        }
+        
+        private static readonly System.Xml.Linq.XName xName = System.Xml.Linq.XName.Get("Element5", "http://linqtoxsd.schemas.org/test/enums-test.xsd");
+        
+        Dictionary<System.Xml.Linq.XName, System.Type> IXMetaData.LocalElementsDictionary {
+            get {
+                IXMetaData schemaMetaData = ((IXMetaData)(this.Content));
+                return schemaMetaData.LocalElementsDictionary;
+            }
+        }
+        
+        XTypedElement IXMetaData.Content {
+            get {
+                return this.Content;
+            }
+        }
+        
         ContentModelEntity IXMetaData.GetContentModel() {
             return ContentModelEntity.Default;
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        System.Xml.Linq.XName IXMetaData.SchemaName {
+            get {
+                return xName;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        SchemaOrigin IXMetaData.TypeOrigin {
+            get {
+                return SchemaOrigin.Element;
+            }
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        ILinqToXsdTypeManager IXMetaData.TypeManager {
+            get {
+                return LinqToXsdTypeManager.Instance;
+            }
         }
     }
     
     public class LinqToXsdTypeManager : ILinqToXsdTypeManager {
         
+        private LinqToXsdTypeManager() {
+        }
+        
         private static Dictionary<System.Xml.Linq.XName, System.Type> typeDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
+        
+        private static void BuildTypeDictionary() {
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GlobalEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumElementType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("GlobalEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumAttributeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType));
+            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedDerivedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType));
+        }
         
         private static Dictionary<System.Xml.Linq.XName, System.Type> elementDictionary = new Dictionary<System.Xml.Linq.XName, System.Type>();
         
+        private static void BuildElementDictionary() {
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Element1", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element1));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Element2", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element2));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Element3", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element3));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Element4", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element4));
+            elementDictionary.Add(System.Xml.Linq.XName.Get("Element5", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element5));
+        }
+        
         private static Dictionary<System.Type, System.Type> wrapperDictionary = new Dictionary<System.Type, System.Type>();
         
+        private static void BuildWrapperDictionary() {
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element1), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumElementType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element2), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumAttributeType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element3), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element4), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType));
+            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element5), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType));
+        }
+        
         private static XmlSchemaSet schemaSet;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
-        
-        static LinqToXsdTypeManager() {
-            BuildTypeDictionary();
-            BuildElementDictionary();
-            BuildWrapperDictionary();
-        }
-        
-        private LinqToXsdTypeManager() {
-        }
         
         XmlSchemaSet ILinqToXsdTypeManager.Schemas {
             get {
@@ -1093,6 +1551,10 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             set {
                 schemaSet = value;
             }
+        }
+        
+        protected internal static void AddSchemas(XmlSchemaSet schemas) {
+            schemas.Add(schemaSet);
         }
         
         Dictionary<System.Xml.Linq.XName, System.Type> ILinqToXsdTypeManager.GlobalTypeDictionary {
@@ -1113,42 +1575,23 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             }
         }
         
-        public static LinqToXsdTypeManager Instance {
-            get {
-                return typeManagerSingleton;
-            }
-        }
-        
-        private static void BuildTypeDictionary() {
-            typeDictionary.Add(System.Xml.Linq.XName.Get("GlobalEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumElementType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("GlobalEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumAttributeType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedEnumElementType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType));
-            typeDictionary.Add(System.Xml.Linq.XName.Get("NestedDerivedEnumAttributeType", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType));
-        }
-        
-        private static void BuildElementDictionary() {
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Element1", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element1));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Element2", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element2));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Element3", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element3));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Element4", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element4));
-            elementDictionary.Add(System.Xml.Linq.XName.Get("Element5", "http://linqtoxsd.schemas.org/test/enums-test.xsd"), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.Element5));
-        }
-        
-        private static void BuildWrapperDictionary() {
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element1), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumElementType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element2), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.GlobalEnumAttributeType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element3), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumElementType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element4), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedEnumAttributeType));
-            wrapperDictionary.Add(typeof(LinqToXsd.Schemas.Test.EnumsTypes.Element5), typeof(global::LinqToXsd.Schemas.Test.EnumsTypes.NestedDerivedEnumAttributeType));
-        }
-        
-        protected internal static void AddSchemas(XmlSchemaSet schemas) {
-            schemas.Add(schemaSet);
+        static LinqToXsdTypeManager() {
+            BuildTypeDictionary();
+            BuildElementDictionary();
+            BuildWrapperDictionary();
         }
         
         public static System.Type GetRootType() {
             return elementDictionary[System.Xml.Linq.XName.Get("Element1", "http://linqtoxsd.schemas.org/test/enums-test.xsd")];
+        }
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private static LinqToXsdTypeManager typeManagerSingleton = new LinqToXsdTypeManager();
+        
+        public static LinqToXsdTypeManager Instance {
+            get {
+                return typeManagerSingleton;
+            }
         }
     }
     
@@ -1160,55 +1603,7 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private XTypedElement rootObject;
         
-
-		public Element1 Element1 {  get {return rootObject as Element1; } }
-
-		public Element2 Element2 {  get {return rootObject as Element2; } }
-
-		public Element3 Element3 {  get {return rootObject as Element3; } }
-
-		public Element4 Element4 {  get {return rootObject as Element4; } }
-
-		public Element5 Element5 {  get {return rootObject as Element5; } }
-        
         private XRootNamespace() {
-        }
-        
-        public XRootNamespace(Element1 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Element2 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Element3 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Element4 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRootNamespace(Element5 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public virtual XDocument XDocument {
-            get {
-                return doc;
-            }
-        }
-        
-        public virtual XTypedElement Root {
-            get {
-                return rootObject;
-            }
         }
         
         public static XRootNamespace Load(string xmlFile) {
@@ -1307,54 +1702,6 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
-    }
-    
-    public partial class XRoot {
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XDocument doc;
-        
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private XTypedElement rootObject;
-        
-
-		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element1 Element1 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element1; } }
-
-		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element2 Element2 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element2; } }
-
-		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element3 Element3 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element3; } }
-
-		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element4 Element4 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element4; } }
-
-		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element5 Element5 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element5; } }
-        
-        private XRoot() {
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element1 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element2 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element3 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element4 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
-        
-        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element5 root) {
-            this.doc = new XDocument(root.Untyped);
-            this.rootObject = root;
-        }
         
         public virtual XDocument XDocument {
             get {
@@ -1366,6 +1713,58 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
             get {
                 return rootObject;
             }
+        }
+        
+        public XRootNamespace(Element1 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Element1 Element1 {  get {return rootObject as Element1; } }
+        
+        public XRootNamespace(Element2 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Element2 Element2 {  get {return rootObject as Element2; } }
+        
+        public XRootNamespace(Element3 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Element3 Element3 {  get {return rootObject as Element3; } }
+        
+        public XRootNamespace(Element4 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Element4 Element4 {  get {return rootObject as Element4; } }
+        
+        public XRootNamespace(Element5 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public Element5 Element5 {  get {return rootObject as Element5; } }
+    }
+    
+    public partial class XRoot {
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XDocument doc;
+        
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private XTypedElement rootObject;
+        
+        private XRoot() {
         }
         
         public static XRoot Load(string xmlFile) {
@@ -1464,5 +1863,57 @@ namespace LinqToXsd.Schemas.Test.EnumsTypes {
         public virtual void Save(string fileName, SaveOptions options) {
             doc.Save(fileName, options);
         }
+        
+        public virtual XDocument XDocument {
+            get {
+                return doc;
+            }
+        }
+        
+        public virtual XTypedElement Root {
+            get {
+                return rootObject;
+            }
+        }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element1 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element1 Element1 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element1; } }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element2 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element2 Element2 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element2; } }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element3 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element3 Element3 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element3; } }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element4 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element4 Element4 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element4; } }
+        
+        public XRoot(global::LinqToXsd.Schemas.Test.EnumsTypes.Element5 root) {
+            this.doc = new XDocument(root.Untyped);
+            this.rootObject = root;
+        }
+        
+
+		public global::LinqToXsd.Schemas.Test.EnumsTypes.Element5 Element5 {  get {return rootObject as global::LinqToXsd.Schemas.Test.EnumsTypes.Element5; } }
     }
 }

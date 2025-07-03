@@ -3,6 +3,12 @@
     "LinqToXsd": {
       "commandName": "Project"
     },
+    "EnumInvalidChars": {
+      "commandName": "Project",
+      "commandLineArgs": "gen EnumsTest.xsd -a",
+      "workingDirectory": "..\\GeneratedSchemaLibraries\\EnumsTest",
+      "hotReloadEnabled": false
+    },
     "W3C XSD": {
       "commandName": "Project",
       "commandLineArgs": "gen \"W3C XMLSchema v1.xsd\" -a",
